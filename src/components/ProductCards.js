@@ -10,7 +10,7 @@ const ProductCards = ({ item, index }) => {
   const slug = category.replace(" ", "-");
   return (
     <div className="group flex">
-      <div className="w-full px-6 py-7 mb-10 bg-slate-50 rounded-none shadow-lg overflow-hidden relative flex flex-col transition ease-in-out duration-500 group-hover:scale-105 group-hover:shadow-xl ">
+      <div className="w-full px-6 py-7 mb-10 bg-slate-50 rounded-none shadow-md overflow-hidden relative flex flex-col transition ease-in-out duration-500 group-hover:scale-105 group-hover:shadow-xl ">
         <div className="p-2 border z-10 flex justify-end absolute h-28 w-28 -top-20 -left-[10rem] bg-secondary transition ease-in-out duration-700 origin-bottom-right rotate-45 group-hover:translate-x-10 group-hover:translate-y-10 ">
           <button>
             <img src={cartIcon} alt="" className="w-5 -rotate-45 self-center" />
