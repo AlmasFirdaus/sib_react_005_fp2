@@ -53,7 +53,7 @@ const DetailProduct = () => {
             </div>
           </div>
         </div>
-        <div className="container py-32 px-8 md:px-20 flex flex-col justify-center items-center">
+        <div className="container pt-32 px-8 md:px-20 flex flex-col justify-center items-center">
           <h1 className="font-bold text-4xl text-primary border-x-[3px] border-secondary px-10 uppercase">Related Product</h1>
           <div className="container pt-16 px-8 md:px-20 flex flex-col justify-center items-center">
             <div className="grid justify-center gap-7 md:grid-cols-2 xl:grid-cols-4">{relatedProducts && relatedProducts.map((item, index) => (index + 1 <= 4 ? <ProductCards item={item} index={index} key={index} /> : ""))}</div>
