@@ -37,7 +37,7 @@ const App = () => {
           }
         />
         <Route
-          path="/product/:id"
+          path="/products/:id"
           element={
             <>
               <Navbar />

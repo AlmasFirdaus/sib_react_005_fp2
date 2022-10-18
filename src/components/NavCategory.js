@@ -17,9 +17,12 @@ const NavCategory = () => {
           </div>
           <div className="w-full md:w-1/2 mt-4 flex justify-evenly items-center font-quicksand ">
             <div className="flex flex-col justify-center items-center group ">
-              <Link to="/all" className={active === "/" || active === "/all" ? "font-semibold text-lg text-secondary capitalize" : "font-semibold text-lg text-primary capitalize transition ease-in-out duration-300 hover:text-secondary"}>
+              <Link
+                to="/products"
+                className={active === "/" || active === "/products" ? "font-semibold text-lg text-secondary capitalize" : "font-semibold text-lg text-primary capitalize transition ease-in-out duration-300 hover:text-secondary"}
+              >
                 all
-                <span className={active === "/" || active === "/all" ? "block h-0.5 w-full bg-secondary" : "block h-0.5 w-0 group-hover:w-full transition-all duration-500  bg-secondary"}></span>
+                <span className={active === "/" || active === "/products" ? "block h-0.5 w-full bg-secondary" : "block h-0.5 w-0 group-hover:w-full transition-all duration-500  bg-secondary"}></span>
               </Link>
             </div>
             <div className="flex flex-col justify-center items-center group ">

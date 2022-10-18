@@ -14,20 +14,20 @@ const Footer = () => {
         <div className="container">
           <div className="flex flex-wrap">
             <div className="mb-12 w-full px-4 font-medium text-primary md:w-1/3">
-              <img src={logo} alt="" className="w-28 mb-4 brightness-150 hover:animate-pulse" />
-              <h3 className="mb-2 text-2xl font-bold">RCTN-KS05</h3>
-              <p>Jember - Indonesia</p>
+              <img src={logo} alt="" className="w-[10rem] lg:w-28 mb-4 brightness-150 hover:animate-pulse" />
+              <h3 className="mb-2 text-3xl lg:text-2xl font-bold">RCTN-KS05</h3>
+              <p className="text-lg">Jember - Indonesia</p>
             </div>
             <div className="mb-12 w-full px-4 md:w-1/3">
-              <h3 className="mb-5 text-xl font-semibold text-primary">Resource</h3>
+              <h3 className="mb-5 text-2xl lg:text-xl font-semibold text-primary">Resource</h3>
               <ul className="text-primary">
                 <li>
-                  <a href="https://reactjs.org/" target="_blank" rel="noreferrer noopener" className="mb-3 block text-base hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
+                  <a href="https://reactjs.org/" target="_blank" rel="noreferrer noopener" className="mb-3 block text-lg hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
                     ReactJS
                   </a>
                 </li>
                 <li>
-                  <a href="https://tailwindcss.com/" target="_blank" rel="noreferrer noopener" className="mb-3 block text-base hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
+                  <a href="https://tailwindcss.com/" target="_blank" rel="noreferrer noopener" className="mb-3 block text-lg hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
                     TailwindCSS
                   </a>
                 </li>
@@ -36,7 +36,7 @@ const Footer = () => {
                     href="https://www.instagram.com/revinarahmadilla"
                     target="_blank"
                     rel="noreferrer noopener"
-                    className="mb-3 block text-base hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1"
+                    className="mb-3 block text-lg hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1"
                   >
                     Logo Design
                   </a>
@@ -44,15 +44,15 @@ const Footer = () => {
               </ul>
             </div>
             <div className="mb-12 w-full px-4 md:w-1/3">
-              <h3 className="mb-5 text-xl font-semibold text-primary">Navigation</h3>
+              <h3 className="mb-5 text-2xl lg:text-xl font-semibold text-primary">Navigation</h3>
               <ul className="text-primary">
                 <li>
                   {location === "/" ? (
-                    <a href="#home" className="mb-3 block text-base hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
+                    <a href="#home" className="mb-3 block text-lg hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
                       Home
                     </a>
                   ) : (
-                    <Link to="/" onClick={topFunction} className="mb-3 block text-base hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
+                    <Link to="/" onClick={topFunction} className="mb-3 block text-lg hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
                       Home
                     </Link>
                   )}
