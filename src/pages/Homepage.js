@@ -19,6 +19,14 @@ const Homepage = () => {
           </div>
         </div>
       </div>
+      <button
+        className="bg-white shadow-sm rounded-full px-5 py-1 fixed text-8xl top-32"
+        onClick={() => {
+          alert("pageXOffset: " + window.pageXOffset + ", pageYOffset: " + window.pageYOffset);
+        }}
+      >
+        click
+      </button>
       <NavCategory />
       <ProductCategory />
       <div className="w-full h-96 bg-cover overflow-hidden" style={{ backgroundImage: `url(${image})` }}>

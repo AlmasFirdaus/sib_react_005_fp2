@@ -27,19 +27,19 @@ const ProductCards = ({ item, index }) => {
           </div>
         </div>
         <div className="flex flex-1 justify-center text-center">
-          <Link to={`/product/${id}`} className="w-full lg:w-2/3 font-bold text-primary text-2xl mb-3 transition duration-300 hover:text-secondary">
+          <Link to={`/product/${id}`} onClick={() => window.scrollTo(0, 0)} className="w-full lg:w-2/3 font-bold text-primary text-2xl mb-3 transition duration-300 hover:text-secondary">
             {title}
           </Link>
         </div>
         <div className="flex-1">
           <div className=" flex flex-wrap justify-center items-center text-center">
-            <Link to={`/product/${id}`}>
+            <Link to={`/product/${id}`} onClick={() => window.scrollTo(0, 0)}>
               <img src={image} alt="" className="object-scale-down my-4 w-full h-44 md:h-[12rem]" />
             </Link>
           </div>
         </div>
         <div className="flex flex-wrap justify-center items-center text-center">
-          <Link to={`/${slug}`} className="w-full font-medium text-primary text-lg my-2 transition duration-300 hover:text-secondary">
+          <Link to={`/${slug}`} onClick={() => window.scrollTo(0, 792)} className="w-full font-medium text-primary text-lg my-2 transition duration-300 hover:text-secondary">
             {category}
           </Link>
           <h2 className="font-semibold text-secondary text-xl mb-4">${price}</h2>

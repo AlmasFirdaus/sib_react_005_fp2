@@ -2,7 +2,7 @@
 // import { Link, useNavigate } from "react-router-dom";
 // import { fetchArticleSearch } from "../features/article/articleSlice";
 import { useEffect } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import logo1 from "../assets/icons/logo-1.png";
 
 const Navbar = () => {
@@ -19,6 +19,7 @@ const Navbar = () => {
         }
       });
     }
+    console.log(("Y:", window.pageYOffset));
   });
 
   const hamburgerCLick = () => {
@@ -73,15 +74,22 @@ const Navbar = () => {
                     )}
                   </li>
                   <li className="group lg:flex">
-                    <a href="#category" className="text-base py-2 mx-6 font-quicksand font-semibold group-hover:text-secondary">
-                      Category
-                      <span className="block h-0.5 w-0 group-hover:w-full transition-all duration-500  bg-secondary"></span>
-                    </a>
+                    {location === "/" ? (
+                      <a href="#category" className="text-base py-2 mx-6 font-quicksand font-semibold group-hover:text-secondary">
+                        Category
+                        <span className="block h-0.5 w-0 group-hover:w-full transition-all duration-500  bg-secondary"></span>
+                      </a>
+                    ) : (
+                      <NavLink to="/#category" onClick={() => window.scrollTo(0, 792)} className="text-base py-2 mx-6 font-quicksand font-semibold group-hover:text-secondary">
+                        Category
+                        <span className="block h-0.5 w-0 group-hover:w-full transition-all duration-500  bg-secondary"></span>
+                      </NavLink>
+                    )}
                   </li>
                   <li className="group lg:flex">
-                    <Link to="login" className="bg-blueButton shadow-md rounded-full text-primaryLight text-base py-1 px-6 mx-6 font-quicksand font-semibold group-hover:brightness-110">
+                    <a href="#a" className="bg-blueButton shadow-md rounded-full text-primaryLight text-base py-1 px-6 mx-6 font-quicksand font-semibold group-hover:brightness-110">
                       Login
-                    </Link>
+                    </a>
                   </li>
                 </ul>
                 {/* <form onSubmit={handleSubmit} className="mx-6 flex">

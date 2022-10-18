@@ -13,7 +13,7 @@ const NavCategory = () => {
       <div className="container pt-28">
         <div className="flex flex-col justify-center items-center">
           <div className=" text-center">
-            <h1 className=" font-quicksand font-bold text-4xl text-primary border-x-[3px] border-secondary px-10">New Product</h1>
+            <h1 className=" font-quicksand font-bold text-4xl text-primary border-x-[3px] border-secondary px-10 uppercase">New Product</h1>
           </div>
           <div className="w-full md:w-1/2 mt-4 flex justify-evenly items-center font-quicksand ">
             <div className="flex flex-col justify-center items-center group ">
