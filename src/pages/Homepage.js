@@ -12,7 +12,7 @@ const Homepage = () => {
           <div className="flex justify-between items-end">
             <div className="w-full lg:w-1/2 flex-col items-center">
               <h1 className="w-full mb-14 font-bold font-garamond text-primaryLight text-7xl drop-shadow-lg capitalize">Discover products for a life well lived.</h1>
-              <a href="#all-category" className="px-7 py-2 mt-10 font-inter text-base text-white bg-blueButton rounded-full transition duration-300 hover:brightness-110">
+              <a href="#category" className="px-7 py-2 mt-10 font-inter text-base text-white bg-blueButton rounded-full transition duration-300 hover:brightness-110">
                 Explore Products
               </a>
             </div>
