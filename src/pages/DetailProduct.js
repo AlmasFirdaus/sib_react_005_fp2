@@ -28,7 +28,7 @@ const DetailProduct = () => {
             <div className="w-1/2 flex justify-center">
               <img src={product.image} alt={product.title} className="w-full h-96 object-scale-down" />
             </div>
-            <div className="w-1/2 flex flex-col justify-between items-center">
+            <div className="w-1/2 flex flex-col justify-between">
               <div className="w-full">
                 <h1 className="font-semibold text-3xl text-primary">{product.title}</h1>
                 <h2 className="font-semibold text-2xl text-secondary mt-3">$ {product.price}</h2>
@@ -49,6 +49,11 @@ const DetailProduct = () => {
                     +
                   </button>
                 </div>
+              </div>
+              <div className="full flex">
+                <h4 className="font-normal text-base uppercase">
+                  Category : <span className="capitalize"> {product.category}</span>
+                </h4>
               </div>
             </div>
           </div>
