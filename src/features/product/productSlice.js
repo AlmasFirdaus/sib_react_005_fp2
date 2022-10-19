@@ -14,7 +14,7 @@ export const getProducts = createAsyncThunk("products/getProducts", async (categ
   const response = await axios.get(`https://fakestoreapi.com/products`);
   return response.data.map((item) => {
     if (!item.quantity) {
-      item["quantity"] = 10;
+      item["stock"] = 10;
     }
     return item;
   });

@@ -3,7 +3,7 @@
 // import { fetchArticleSearch } from "../features/article/articleSlice";
 import { useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import logo1 from "../assets/icons/logo-1.png";
+import logo1 from "../assets/icons/icon-images/logo-1.png";
 
 const Navbar = () => {
   const location = useLocation().pathname;
@@ -87,7 +87,7 @@ const Navbar = () => {
                     )}
                   </li>
                   <li className="group lg:flex">
-                    <a href="#a" className="bg-blueButton shadow-md rounded-full text-primaryLight text-base py-1 px-6 mx-6 font-quicksand font-semibold group-hover:brightness-110">
+                    <a href="#a" className="lg:hidden bg-blueButton shadow-md rounded-full text-primaryLight text-base py-1 px-6 mx-6 font-quicksand font-semibold group-hover:brightness-110">
                       Login
                     </a>
                   </li>
@@ -98,6 +98,11 @@ const Navbar = () => {
                 </form> */}
               </div>
             </nav>
+          </div>
+          <div className="hidden group lg:flex">
+            <a href="#a" className="bg-blueButton shadow-md rounded-full text-primaryLight text-base py-1 px-6 mx-6 font-quicksand font-semibold transition ease-in-out duration-200 group-hover:brightness-110">
+              Login
+            </a>
           </div>
         </div>
       </div>

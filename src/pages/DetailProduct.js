@@ -2,18 +2,23 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useLocation, useParams } from "react-router-dom";
 import ProductCards from "../components/ProductCards";
+import { HomeIcon, ChevronRightIcon, MinusIcon, PlusIcon, CartIcon, HeartIcon } from "../assets/icons/icon-svg/iconSvg";
 
 const DetailProduct = () => {
   const [quantity, setQuantity] = useState(0);
   const { id } = useParams();
   let { pathname } = useLocation();
-  console.log("🚀 ~ file: DetailProduct.js ~ line 10 ~ DetailProduct ~ pathname", pathname);
   const locations = pathname.substring(1).split("/");
-  console.log("🚀 ~ file: DetailProduct.js ~ line 11 ~ DetailProduct ~ location", locations);
   const { products } = useSelector((store) => store.product);
   const product = products ? products.filter((product) => product.id === Number(id))[0] : "";
   const relatedProducts = products ? products.filter((relatedProduct) => relatedProduct.category === product.category) : "";
-  console.log("🚀 ~ file: DetailProduct.js ~ line 12 ~ DetailProduct ~ relatedProducts", relatedProducts);
+
+  const handleQuantity = (e) => {
+    e.preventDefault();
+    setQuantity(e.target.value);
+  };
+
+  const handleCart = () => {};
 
   if (product) {
     return (
@@ -25,11 +30,12 @@ const DetailProduct = () => {
           <div className="w-full h-full bg-slate-400 mix-blend-multiply"></div>
           <div className="absolute flex flex-col justify-center items-center text-white">
             <h1 className="text-white text-4xl font-semibold">{product.title}</h1>
-            <h5 className="w-52 flex justify-evenly items-center capitalize">
+            <div className="py-2 flex flex-wrap justify-evenly items-center capitalize">
+              <HomeIcon />
               <Link to="/" onClick={() => window.scrollTo(0, 0)} className="font-medium text-lg text-white transition ease-in-out duration-200 hover:text-secondary">
                 Home
               </Link>
-              <span>&gt;</span>
+              <ChevronRightIcon />
               {locations.map((location, index) =>
                 index + 1 <= locations.length - 1 ? (
                   <Link to={`/${location}`} onClick={() => window.scrollTo(0, 792)} className="font-medium text-lg text-white transition ease-in-out duration-200 hover:text-secondary" key={index}>
@@ -39,7 +45,9 @@ const DetailProduct = () => {
                   ""
                 )
               )}
-            </h5>
+              <ChevronRightIcon />
+              <h3 className="font-medium text-lg text-white">{product.title}</h3>
+            </div>
           </div>
         </div>
         <div className="container bg-white py-20 lg:py-32">
@@ -57,17 +65,26 @@ const DetailProduct = () => {
                 <p className="font-medium">{product.description}</p>
               </div>
               <div className="w-full border-t-[3px] mb-10 lg:mb-0"></div>
-              <div className="w-full flex items-center mb-10 lg:mb-0">
-                <span className="font-medium text-lg mr-10">QTY</span>
-                <div className="w-32 px-5 py-1 bg-slate-50 shadow-md rounded-full flex justify-between">
-                  <button className="transition ease-in-out duration-200 hover:text-secondary" onClick={() => setQuantity(quantity >= 1 ? quantity - 1 : 0)}>
-                    -
-                  </button>
-                  <span>{quantity}</span>
-                  <button className="transition ease-in-out duration-200 hover:text-secondary" onClick={() => setQuantity(quantity < product.quantity ? quantity + 1 : quantity)}>
-                    +
-                  </button>
+              <div className="w-full min-h-[7rem] flex flex-wrap justify-start items-center mb-10 lg:mb-0">
+                <div className="flex flex-beetwen items-center">
+                  <span className="font-medium text-lg mr-10">QTY</span>
+                  <div className="w-32 px-5 py-2 mr-5 bg-slate-50 shadow-md rounded-full flex justify-between">
+                    <button className="transition ease-in-out duration-200 hover:text-secondary" onClick={() => setQuantity(quantity >= 1 ? quantity - 1 : 0)}>
+                      <MinusIcon />
+                    </button>
+                    <input type="number" value={quantity} onChange={handleQuantity} className="min-w-[1rem] rounded-full text-center" />
+                    <button className="transition ease-in-out duration-200 hover:text-secondary" onClick={() => setQuantity(quantity < product.stock ? quantity + 1 : quantity)}>
+                      <PlusIcon />
+                    </button>
+                  </div>
                 </div>
+
+                <button onClick={handleCart} className="font-medium text-base text-white px-5 py-2 mr-5 flex items-center bg-blueButton rounded-full shadow-sm transition ease-in-out duration-200 hover:brightness-110 hover:shadow-md">
+                  <CartIcon /> <span className="ml-2">Add To Cart</span>
+                </button>
+                <button className="font-medium text-base text-black opacity-20 px-2 py-2 flex items-center bg-slate-200 rounded-full shadow-sm transition ease-in-out duration-200 hover:brightness-110 hover:shadow-md hover:bg-blueButton hover:opacity-100 hover:text-white">
+                  <HeartIcon />
+                </button>
               </div>
               <div className="full flex mb-10 lg:mb-0">
                 <h4 className="font-medium text-base uppercase">

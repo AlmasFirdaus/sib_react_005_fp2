@@ -1,9 +1,9 @@
 // import axios frosm "axios";
 import React from "react";
 import { Link } from "react-router-dom";
-import cartIcon from "../assets/icons/cart-whitefill-2.png";
-import heartIcon from "../assets/icons/heart.png";
-import searchIcon from "../assets/icons/search-plus.svg";
+import cartIcon from "../assets/icons/icon-images/cart-whitefill-2.png";
+import heartIcon from "../assets/icons/icon-images/heart.png";
+import searchIcon from "../assets/icons/icon-images/search-plus.svg";
 
 const ProductCards = ({ item, index }) => {
   let { id, title, price, category, image } = item;
