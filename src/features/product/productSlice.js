@@ -5,12 +5,12 @@ const initialState = {
   isLoading: false,
   products: [],
   productUpdates: [],
+  carts: [],
   amount: 0,
   total: 0,
 };
 
 export const getProducts = createAsyncThunk("products/getProducts", async (category) => {
-  // const response = category === "all" ? await axios.get(`https://fakestoreapi.com/products`) : await axios.get(`https://fakestoreapi.com/products/category/${category}`);
   const response = await axios.get(`https://fakestoreapi.com/products`);
   return response.data.map((item) => {
     if (!item.quantity) {
@@ -34,6 +34,13 @@ export const updateProducts = createAsyncThunk("products/updateProduct", async (
 const productSlice = createSlice({
   name: "product",
   initialState: initialState,
+  reducers: {
+    addCart: (state, action) => {
+      console.log("🚀 ~ file: productSlice.js ~ line 39 ~ action", action);
+
+      state.carts.push(action.payload);
+    },
+  },
   extraReducers: {
     [getProducts.pending]: (state, action) => {
       state.isLoading = true;
@@ -54,4 +61,5 @@ const productSlice = createSlice({
   },
 });
 
+export const { addCart } = productSlice.actions;
 export default productSlice.reducer;

@@ -1,24 +1,32 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import ProductCards from "../components/ProductCards";
 import { HomeIcon, ChevronRightIcon, MinusIcon, PlusIcon, CartIcon, HeartIcon } from "../assets/icons/icon-svg/iconSvg";
+import { addCart } from "../features/product/productSlice";
 
 const DetailProduct = () => {
   const [quantity, setQuantity] = useState(0);
   const { id } = useParams();
+  const dispatch = useDispatch();
   let { pathname } = useLocation();
   const locations = pathname.substring(1).split("/");
   const { products } = useSelector((store) => store.product);
   const product = products ? products.filter((product) => product.id === Number(id))[0] : "";
   const relatedProducts = products ? products.filter((relatedProduct) => relatedProduct.category === product.category) : "";
 
+  // delete soon
+  const navigate = useNavigate();
+
   const handleQuantity = (e) => {
     e.preventDefault();
     setQuantity(e.target.value);
   };
 
-  const handleCart = () => {};
+  const handleCart = () => {
+    dispatch(addCart({ id, quantity }));
+    navigate("/cart");
+  };
 
   if (product) {
     return (
