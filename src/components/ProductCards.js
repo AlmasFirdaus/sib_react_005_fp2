@@ -5,7 +5,7 @@ import cartIcon from "../assets/icons/icon-images/cart-whitefill-2.png";
 import heartIcon from "../assets/icons/icon-images/heart.png";
 import searchIcon from "../assets/icons/icon-images/search-plus.svg";
 
-const ProductCards = ({ item, index }) => {
+const ProductCards = ({ item }) => {
   let { id, title, price, category, image } = item;
   const slug = category.replace(" ", "-");
   return (

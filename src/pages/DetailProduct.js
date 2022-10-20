@@ -6,13 +6,13 @@ import { HomeIcon, ChevronRightIcon, MinusIcon, PlusIcon, CartIcon, HeartIcon } 
 import { addCart } from "../features/product/productSlice";
 
 const DetailProduct = () => {
-  const [quantity, setQuantity] = useState(0);
-  const { id } = useParams();
+  const [quantity, setQuantity] = useState(1);
+  const id = Number(useParams().id);
   const dispatch = useDispatch();
   let { pathname } = useLocation();
   const locations = pathname.substring(1).split("/");
   const { products } = useSelector((store) => store.product);
-  const product = products ? products.filter((product) => product.id === Number(id))[0] : "";
+  const product = products ? products.filter((product) => product.id === id)[0] : "";
   const relatedProducts = products ? products.filter((relatedProduct) => relatedProduct.category === product.category) : "";
 
   // delete soon

@@ -19,7 +19,6 @@ const Navbar = () => {
         }
       });
     }
-    console.log(("Y:", window.pageYOffset));
   });
 
   const hamburgerCLick = () => {
