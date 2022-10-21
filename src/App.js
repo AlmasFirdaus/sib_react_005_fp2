@@ -1,18 +1,23 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
-import { getProducts } from "./features/product/productSlice";
+import { calculateTotal, getProducts } from "./features/product/productSlice";
 import Carts from "./pages/Carts";
 import DetailProduct from "./pages/DetailProduct";
 import Homepage from "./pages/Homepage";
 
 const App = () => {
+  const { carts } = useSelector((store) => store.product);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(calculateTotal());
+  }, [dispatch, carts]);
 
   return (
     <div className="bg-zinc-100">

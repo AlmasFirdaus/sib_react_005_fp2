@@ -86,6 +86,12 @@ const Navbar = () => {
                     )}
                   </li>
                   <li className="group lg:flex">
+                    <NavLink to="/cart" className="text-base py-2 mx-6 font-quicksand font-semibold group-hover:text-secondary">
+                      Cart
+                      <span className="block h-0.5 w-0 group-hover:w-full transition-all duration-500  bg-secondary"></span>
+                    </NavLink>
+                  </li>
+                  <li className="group lg:flex">
                     <a href="#a" className="lg:hidden bg-blueButton shadow-md rounded-full text-primaryLight text-base py-1 px-6 mx-6 font-quicksand font-semibold group-hover:brightness-110">
                       Login
                     </a>

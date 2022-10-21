@@ -6,14 +6,15 @@ import { HomeIcon, ChevronRightIcon, MinusIcon, PlusIcon, CartIcon, HeartIcon } 
 import { addCart } from "../features/product/productSlice";
 
 const DetailProduct = () => {
-  const [quantity, setQuantity] = useState(1);
   const id = Number(useParams().id);
+  const { products, carts } = useSelector((store) => store.product);
+  let product = products ? products.find((product) => product.id === id) : "";
+  let inCart = carts ? carts.find((cart) => cart.id === id) : null;
+  const relatedProducts = products ? products.filter((relatedProduct) => relatedProduct.category === product.category) : "";
+  const [quantity, setQuantity] = useState(inCart ? inCart.quantity : 1);
   const dispatch = useDispatch();
   let { pathname } = useLocation();
   const locations = pathname.substring(1).split("/");
-  const { products } = useSelector((store) => store.product);
-  const product = products ? products.filter((product) => product.id === id)[0] : "";
-  const relatedProducts = products ? products.filter((relatedProduct) => relatedProduct.category === product.category) : "";
 
   // delete soon
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const DetailProduct = () => {
   };
 
   const handleCart = () => {
-    dispatch(addCart({ id, quantity }));
+    dispatch(addCart({ product, quantity }));
     navigate("/cart");
   };
 
