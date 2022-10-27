@@ -4,13 +4,18 @@ import axios from "axios";
 const initialState = {
   isLoading: false,
   products: [],
-  productUpdates: [],
   carts: [],
+  recap: [],
+  login: [],
   amount: 0,
   total: 0,
 };
 
-export const getProducts = createAsyncThunk("products/getProducts", async (category) => {
+export const getProducts = createAsyncThunk("products/getProducts", async () => {
+  if (JSON.parse(localStorage.getItem("products"))) {
+    return JSON.parse(localStorage.getItem("products"));
+  }
+  console.log("a");
   const response = await axios.get(`https://fakestoreapi.com/products`);
   return response.data.map((item) => {
     if (!item.quantity) {
@@ -20,15 +25,25 @@ export const getProducts = createAsyncThunk("products/getProducts", async (categ
   });
 });
 
-export const updateProducts = createAsyncThunk("products/updateProduct", async ({ id, price }, thunkAPI) => {
-  const response = await axios.patch(`https://fakestoreapi.com/products/${id}`, {
-    title: "test product",
-    price: 13.5,
-    description: "lorem ipsum set",
-    image: "https://i.pravatar.cc",
-    category: "electronic",
-  });
-  return response.data;
+export const loginUser = createAsyncThunk("products/loginUser", async ({ username, password, redirect, isLogin }) => {
+  try {
+    if (isLogin) {
+      return isLogin;
+    }
+    const resPost = await axios.post("https://fakestoreapi.com/auth/login", {
+      username: username !== "" ? username : " ",
+      password: password !== "" ? password : " ",
+    });
+    const resGet = await axios.get("https://fakestoreapi.com/users");
+    let find = resGet.data.find((res) => res.username === username);
+
+    if (resPost.data.token) {
+      redirect(true);
+      return { id: find.id, user: `${find.name.firstname} ${find.name.lastname}`, token: resPost.data.token, login: true };
+    }
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 const productSlice = createSlice({
@@ -36,35 +51,63 @@ const productSlice = createSlice({
   initialState: initialState,
   reducers: {
     addCart: (state, action) => {
-      const { carts } = state;
-      const { product, quantity } = action.payload;
-      const exist = carts.find((cart) => cart.id === product.id);
-      if (exist) {
-        const cartItem = carts.find((cart) => cart.id === product.id);
-        cartItem.quantity = quantity ? quantity : cartItem.quantity + 1;
+      const { carts, products, login } = state;
+      const { id, quantity } = action.payload;
+      const cartLogin = carts.filter((cart) => cart.idUser === login.id);
+      const existCart = cartLogin.find((cart) => cart.product.idProduct === id);
+      const existProduct = products.find((product) => product.id === id);
+      if (existCart && existProduct) {
+        console.log(quantity);
+        const cartItem = carts.find((cart) => cart.product.idProduct === id);
+        cartItem.product.quantity = quantity ? quantity : cartItem.product.quantity + 1;
+        existProduct.stock -= 1;
       } else {
-        carts.push({ ...product, quantity: quantity });
+        existProduct.stock -= quantity;
+        carts.push({ idUser: login.id, product: { idProduct: id, quantity: quantity } });
       }
+      localStorage.setItem("carts", JSON.stringify(carts));
+      localStorage.setItem("products", JSON.stringify(products));
     },
     removeItem: (state, action) => {
-      const { product } = action.payload;
-      const exist = state.carts.find((cart) => cart.id === product.id);
-      if (exist.quantity === 1) {
-        state.carts = state.carts.filter((cart) => cart.id !== product.id);
+      const { id, quantity } = action.payload;
+      const cartLogin = state.carts.filter((cart) => cart.idUser === state.login.id);
+      const exist = cartLogin.find((cart) => cart.product.idProduct === id);
+      const existProduct = state.products.find((product) => product.id === id);
+      if (existProduct && exist.product.quantity === 1) {
+        state.carts = state.carts.filter((cart) => cart.product.idProduct !== id);
+        existProduct.stock += quantity;
       } else {
-        const cartItem = state.carts.find((cart) => cart.id === product.id);
-        cartItem.quantity = cartItem.quantity - 1;
+        const cartItem = state.carts.find((cart) => cart.product.idProduct === id);
+        cartItem.product.quantity = cartItem.product.quantity - 1;
+        existProduct.stock += 1;
       }
+      localStorage.setItem("carts", JSON.stringify(state.carts));
+      localStorage.setItem("products", JSON.stringify(state.products));
+    },
+    checkoutItem: (state, action) => {
+      state.recap.push(action.payload);
+      state.carts = [];
+      state.amount = 0;
+      state.total = 0;
+      localStorage.setItem("carts", JSON.stringify(state.carts));
+      localStorage.setItem("recap", JSON.stringify(state.recap));
     },
     calculateTotal: (state, action) => {
       let amount = 0;
       let total = 0;
-      state.carts.forEach((item) => {
-        amount += item.quantity;
-        total += amount * item.price;
-      });
+
+      for (let item of state.carts) {
+        const cart = state.products.find((product) => product.id === item.product.idProduct);
+        total += cart.price * item.product.quantity;
+        amount += item.product.quantity;
+      }
+
       state.amount = amount;
       state.total = total;
+    },
+    logoutUser: (state, action) => {
+      state.login = [];
+      localStorage.removeItem("login");
     },
   },
   extraReducers: {
@@ -74,18 +117,19 @@ const productSlice = createSlice({
     [getProducts.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.products = action.payload;
+      localStorage.setItem("products", JSON.stringify(action.payload));
     },
-    [updateProducts.fulfilled]: (state, action) => {
+    [loginUser.pending]: (state, action) => {
+      state.isLoading = true;
+      state.login = [];
+    },
+    [loginUser.fulfilled]: (state, action) => {
       state.isLoading = false;
-      const { payload } = action;
-      console.log(payload);
-      const result = state.productUpdates.some((product) => product.id === payload.id);
-      if (!result) {
-        state.productUpdates.push(payload);
-      }
+      state.login = action.payload;
+      localStorage.setItem("login", JSON.stringify(action.payload));
     },
   },
 });
 
-export const { addCart, removeItem, calculateTotal } = productSlice.actions;
+export const { addCart, removeItem, calculateTotal, checkoutItem, logoutUser } = productSlice.actions;
 export default productSlice.reducer;

@@ -25,8 +25,12 @@ const DetailProduct = () => {
   };
 
   const handleCart = () => {
-    dispatch(addCart({ product, quantity }));
-    navigate("/cart");
+    if (JSON.parse(!localStorage.getItem("login"))) {
+      navigate("/login");
+    } else {
+      dispatch(addCart({ id: id, quantity: quantity }));
+      navigate("/cart");
+    }
   };
 
   if (product) {

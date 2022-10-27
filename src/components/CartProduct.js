@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { MinusIcon, PlusIcon } from "../assets/icons/icon-svg/iconSvg";
 import { addCart, removeItem } from "../features/product/productSlice";
 
 const CartProduct = ({ product }) => {
-  console.log("🚀 ~ file: CartProduct.js ~ line 7 ~ CartProduct ~ product", product);
-  const { title, image, price, stock, quantity } = product;
-  const [qty, setQty] = useState(product.quantity);
-  const [qtyLimit, setQtyLimit] = useState(product.quantity);
+  const { idProduct, quantity } = product.product;
+  console.log("🚀 ~ file: CartProduct.js ~ line 8 ~ CartProduct ~ quantity", quantity);
+  const [qty, setQty] = useState(quantity);
+  const [qtyLimit, setQtyLimit] = useState(quantity);
   const [limitStock, setLimitStock] = useState(false);
-  // const { products, carts } = useSelector((store) => store.product);
+  const { products } = useSelector((store) => store.product);
+  const { image, price, title, stock } = products.find((item) => item.id === idProduct);
   // console.log("🚀 ~ file: CartProduct.js ~ line 9 ~ CartProduct ~ carts", carts);
   // const { title, image, price, stock } = products.filter((product) => product.id === product.id)[0];
   const dispatch = useDispatch();
@@ -24,19 +25,14 @@ const CartProduct = ({ product }) => {
   // };
 
   const handleSubtract = () => {
-    setQty(qty >= 1 ? qty - 1 : 0);
+    setQty(qty - 1);
 
-    dispatch(removeItem({ product }));
+    dispatch(removeItem({ id: idProduct, quantity: qty }));
   };
 
   const handlePlus = () => {
     setQty(qty + 1);
-    setQtyLimit(qtyLimit + 1);
-    if (qty < stock) {
-      dispatch(addCart({ product }));
-    } else if (qty >= stock) {
-      setLimitStock(true);
-    }
+    dispatch(addCart({ id: idProduct, quantity: qty + 1 }));
   };
 
   return (
@@ -53,15 +49,27 @@ const CartProduct = ({ product }) => {
       <td>
         <div className="flex flex-col">
           <div className="w-32 px-5 py-1 mr-5 bg-slate-50 shadow-md rounded-full flex flex-row justify-between">
-            <button className="transition ease-in-out duration-200 hover:text-secondary" onClick={handleSubtract}>
-              <MinusIcon />
-            </button>
-            <input type="number" value={qty < stock ? qty : stock} disabled className="min-w-[1rem] rounded-full text-center" />
-            <button className="transition ease-in-out duration-200 hover:text-secondary" onClick={handlePlus}>
-              <PlusIcon />
-            </button>
+            {qty === 0 ? (
+              <button className="transition ease-in-out duration-200 hover:text-secondary" disabled>
+                <MinusIcon />
+              </button>
+            ) : (
+              <button className="transition ease-in-out duration-200 hover:text-secondary" onClick={handleSubtract}>
+                <MinusIcon />
+              </button>
+            )}
+            <input type="number" value={qty} disabled className="min-w-[1rem] rounded-full text-center" />
+            {stock === 0 ? (
+              <button className="transition ease-in-out duration-200 hover:text-secondary" disabled>
+                max
+              </button>
+            ) : (
+              <button className="transition ease-in-out duration-200 hover:text-secondary" onClick={handlePlus}>
+                <PlusIcon />
+              </button>
+            )}
           </div>
-          {limitStock && <h2 className="text-sm font-medium text-red-500 pt-2">Stock tidak memenuhi {qtyLimit}</h2>}
+          {stock === 0 && <h2 className="text-sm font-medium text-red-500 pt-2">Stock tidak memenuhi</h2>}
         </div>
       </td>
       <td>

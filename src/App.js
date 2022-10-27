@@ -3,16 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
-import { calculateTotal, getProducts } from "./features/product/productSlice";
+import { calculateTotal, getProducts, loginUser } from "./features/product/productSlice";
 import Carts from "./pages/Carts";
 import DetailProduct from "./pages/DetailProduct";
 import Homepage from "./pages/Homepage";
+import Login from "./pages/Login";
 
 const App = () => {
   const { carts } = useSelector((store) => store.product);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts());
+    if (JSON.parse(localStorage.getItem("login"))) {
+      const isLogin = JSON.parse(localStorage.getItem("login"));
+      dispatch(loginUser({ isLogin }));
+    }
   }, [dispatch]);
 
   useEffect(() => {
@@ -62,6 +67,7 @@ const App = () => {
             </>
           }
         />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );

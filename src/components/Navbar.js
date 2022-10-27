@@ -1,12 +1,12 @@
-// import { useDispatch } from "react-redux";
-// import { Link, useNavigate } from "react-router-dom";
-// import { fetchArticleSearch } from "../features/article/articleSlice";
 import { useEffect } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import logo1 from "../assets/icons/icon-images/logo-1.png";
+import { logoutUser } from "../features/product/productSlice";
 
 const Navbar = () => {
   const location = useLocation().pathname;
+  const dispatch = useDispatch();
   const hamburger = document.querySelector("#hamburger");
   const navMenu = document.querySelector("#nav-menu");
 
@@ -32,6 +32,10 @@ const Navbar = () => {
   const topFunction = () => {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
+  };
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
   };
 
   return (
@@ -91,11 +95,15 @@ const Navbar = () => {
                       <span className="block h-0.5 w-0 group-hover:w-full transition-all duration-500  bg-secondary"></span>
                     </NavLink>
                   </li>
-                  <li className="group lg:flex">
-                    <a href="#a" className="lg:hidden bg-blueButton shadow-md rounded-full text-primaryLight text-base py-1 px-6 mx-6 font-quicksand font-semibold group-hover:brightness-110">
-                      Login
-                    </a>
-                  </li>
+                  {!JSON.parse(localStorage.getItem("login")) ? (
+                    <li className="group lg:flex">
+                      <Link to="/login" className="lg:hidden bg-blueButton shadow-md rounded-full text-primaryLight text-base py-1 px-6 mx-6 font-quicksand font-semibold group-hover:brightness-110">
+                        Login
+                      </Link>
+                    </li>
+                  ) : (
+                    ""
+                  )}
                 </ul>
                 {/* <form onSubmit={handleSubmit} className="mx-6 flex">
                   <input type="text" onChange={searchChange} className="text-base border border-primary border-opacity-50 rounded-lg mr-3 px-2 w-1/2" />
@@ -104,11 +112,22 @@ const Navbar = () => {
               </div>
             </nav>
           </div>
-          <div className="hidden group lg:flex">
-            <a href="#a" className="bg-blueButton shadow-md rounded-full text-primaryLight text-base py-1 px-6 mx-6 font-quicksand font-semibold transition ease-in-out duration-200 group-hover:brightness-110">
-              Login
-            </a>
-          </div>
+          {!JSON.parse(localStorage.getItem("login")) ? (
+            <div className="hidden group lg:flex">
+              <Link to="/login" className="bg-blueButton shadow-md rounded-full text-primaryLight text-base py-1 px-6 mx-6 font-quicksand font-semibold transition ease-in-out duration-200 group-hover:brightness-110">
+                Login
+              </Link>
+            </div>
+          ) : (
+            <div className="hidden group lg:flex">
+              <button
+                className="outline-1 shadow-md rounded-full text-primary text-base py-1 px-6 mx-6 font-quicksand font-semibold transition ease-in-out duration-200 group-hover:brightness-110 hover:bg-blueButton hover:text-primaryLight"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </header>
