@@ -9,9 +9,9 @@ const DetailProduct = () => {
   const id = Number(useParams().id);
   const { products, carts } = useSelector((store) => store.product);
   let product = products ? products.find((product) => product.id === id) : "";
-  let inCart = carts ? carts.find((cart) => cart.id === id) : null;
+  let inCart = carts ? carts.find((cart) => cart.product.idProduct === id) : null;
   const relatedProducts = products ? products.filter((relatedProduct) => relatedProduct.category === product.category) : "";
-  const [quantity, setQuantity] = useState(inCart ? inCart.quantity : 1);
+  const [quantity, setQuantity] = useState(inCart ? inCart.product.quantity : 1);
   const dispatch = useDispatch();
   let { pathname } = useLocation();
   const locations = pathname.substring(1).split("/");
@@ -92,16 +92,22 @@ const DetailProduct = () => {
                   </div>
                 </div>
 
-                <button onClick={handleCart} className="font-medium text-base text-white px-5 py-2 mr-5 flex items-center bg-blueButton rounded-full shadow-sm transition ease-in-out duration-200 hover:brightness-110 hover:shadow-md">
-                  <CartIcon /> <span className="ml-2">Add To Cart</span>
-                </button>
+                {product.stock === 0 ? (
+                  <button className="cursor-not-allowed font-medium text-base text-white px-5 py-2 mr-5 flex items-center bg-secondary rounded-full shadow-sm transition ease-in-out duration-200 hover:brightness-110 hover:shadow-md">
+                    <CartIcon /> <span className="ml-2 capitalize">Out of Stock</span>
+                  </button>
+                ) : (
+                  <button onClick={handleCart} className="font-medium text-base text-white px-5 py-2 mr-5 flex items-center bg-blueButton rounded-full shadow-sm transition ease-in-out duration-200 hover:brightness-110 hover:shadow-md">
+                    <CartIcon /> <span className="ml-2 capitalize">Add To Cart</span>
+                  </button>
+                )}
                 <button className="font-medium text-base text-black opacity-20 px-2 py-2 flex items-center bg-slate-200 rounded-full shadow-sm transition ease-in-out duration-200 hover:brightness-110 hover:shadow-md hover:bg-blueButton hover:opacity-100 hover:text-white">
                   <HeartIcon />
                 </button>
               </div>
               <div className="full flex mb-10 lg:mb-0">
                 <h4 className="font-medium text-base uppercase">
-                  Category :{" "}
+                  Category :
                   <Link to={`/${product.category.replace(" ", "-")}`} onClick={() => window.scrollTo(0, 792)} className="capitalize text-primary transition ease-in-out duration-300 hover:text-secondary">
                     {product.category}
                   </Link>

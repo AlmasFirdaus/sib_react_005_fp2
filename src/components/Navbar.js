@@ -1,10 +1,11 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import logo1 from "../assets/icons/icon-images/logo-1.png";
 import { logoutUser } from "../features/product/productSlice";
 
 const Navbar = () => {
+  const { amount } = useSelector((store) => store.product);
   const location = useLocation().pathname;
   const dispatch = useDispatch();
   const hamburger = document.querySelector("#hamburger");
@@ -89,11 +90,14 @@ const Navbar = () => {
                       </NavLink>
                     )}
                   </li>
-                  <li className="group lg:flex">
-                    <NavLink to="/cart" className="text-base py-2 mx-6 font-quicksand font-semibold group-hover:text-secondary">
+                  <li className="group lg:flex relative">
+                    <NavLink to="/cart" className="z-20 text-base py-2 mx-6 font-quicksand font-semibold group-hover:text-secondary">
                       Cart
                       <span className="block h-0.5 w-0 group-hover:w-full transition-all duration-500  bg-secondary"></span>
                     </NavLink>
+                    <div className="absolute -right-1 flex justify-center items-center">
+                      <span className=" bg-secondary rounded-full text-primary text-xs font-semibold px-2 py-1">{amount}</span>
+                    </div>
                   </li>
                   {!JSON.parse(localStorage.getItem("login")) ? (
                     <li className="group lg:flex">

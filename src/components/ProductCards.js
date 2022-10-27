@@ -1,18 +1,30 @@
 // import axios frosm "axios";
 import React from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import cartIcon from "../assets/icons/icon-images/cart-whitefill-2.png";
 import heartIcon from "../assets/icons/icon-images/heart.png";
 import searchIcon from "../assets/icons/icon-images/search-plus.svg";
+import { addCart } from "../features/product/productSlice";
 
 const ProductCards = ({ item }) => {
-  let { id, title, price, category, image } = item;
+  let { id, title, price, category, image, stock } = item;
   const slug = category.replace(" ", "-");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleCart = () => {
+    if (stock !== 0) {
+      dispatch(addCart({ id: id, quantity: 1 }));
+      navigate("/cart");
+    }
+  };
+
   return (
     <div className="group flex">
       <div className="w-full px-6 py-7 mb-10 bg-slate-50 rounded-none shadow-md overflow-hidden relative flex flex-col transition ease-in-out duration-500 group-hover:scale-105 group-hover:shadow-xl ">
         <div className="p-2 border z-10 flex justify-end absolute h-28 w-28 -top-20 -left-[10rem] bg-secondary transition ease-in-out duration-700 origin-bottom-right rotate-45 group-hover:translate-x-10 group-hover:translate-y-10 ">
-          <button>
+          <button onClick={handleCart}>
             <img src={cartIcon} alt="" className="w-5 -rotate-45 self-center" />
           </button>
         </div>

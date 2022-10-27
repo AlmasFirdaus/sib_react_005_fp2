@@ -15,7 +15,6 @@ export const getProducts = createAsyncThunk("products/getProducts", async () => 
   if (JSON.parse(localStorage.getItem("products"))) {
     return JSON.parse(localStorage.getItem("products"));
   }
-  console.log("a");
   const response = await axios.get(`https://fakestoreapi.com/products`);
   return response.data.map((item) => {
     if (!item.quantity) {
@@ -50,6 +49,10 @@ const productSlice = createSlice({
   name: "product",
   initialState: initialState,
   reducers: {
+    cartsExist: (state, action) => {
+      state.carts = action.payload;
+      localStorage.setItem("carts", JSON.stringify(state.carts));
+    },
     addCart: (state, action) => {
       const { carts, products, login } = state;
       const { id, quantity } = action.payload;
@@ -57,7 +60,6 @@ const productSlice = createSlice({
       const existCart = cartLogin.find((cart) => cart.product.idProduct === id);
       const existProduct = products.find((product) => product.id === id);
       if (existCart && existProduct) {
-        console.log(quantity);
         const cartItem = carts.find((cart) => cart.product.idProduct === id);
         cartItem.product.quantity = quantity ? quantity : cartItem.product.quantity + 1;
         existProduct.stock -= 1;
@@ -95,11 +97,12 @@ const productSlice = createSlice({
     calculateTotal: (state, action) => {
       let amount = 0;
       let total = 0;
-
       for (let item of state.carts) {
         const cart = state.products.find((product) => product.id === item.product.idProduct);
-        total += cart.price * item.product.quantity;
-        amount += item.product.quantity;
+        if (cart) {
+          total += cart.price * item.product.quantity;
+          amount += item.product.quantity;
+        }
       }
 
       state.amount = amount;
@@ -131,5 +134,5 @@ const productSlice = createSlice({
   },
 });
 
-export const { addCart, removeItem, calculateTotal, checkoutItem, logoutUser } = productSlice.actions;
+export const { addCart, removeItem, calculateTotal, checkoutItem, logoutUser, cartsExist } = productSlice.actions;
 export default productSlice.reducer;

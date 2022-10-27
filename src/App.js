@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
-import { calculateTotal, getProducts, loginUser } from "./features/product/productSlice";
+import { calculateTotal, cartsExist, getProducts, loginUser } from "./features/product/productSlice";
 import Carts from "./pages/Carts";
 import DetailProduct from "./pages/DetailProduct";
 import Homepage from "./pages/Homepage";
 import Login from "./pages/Login";
 
 const App = () => {
-  const { carts } = useSelector((store) => store.product);
+  const { carts, products } = useSelector((store) => store.product);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts());
@@ -18,11 +18,14 @@ const App = () => {
       const isLogin = JSON.parse(localStorage.getItem("login"));
       dispatch(loginUser({ isLogin }));
     }
+    if (JSON.parse(localStorage.getItem("carts"))) {
+      dispatch(cartsExist(JSON.parse(localStorage.getItem("carts"))));
+    }
   }, [dispatch]);
 
   useEffect(() => {
     dispatch(calculateTotal());
-  }, [dispatch, carts]);
+  }, [dispatch, carts, products]);
 
   return (
     <div className="bg-zinc-100">
