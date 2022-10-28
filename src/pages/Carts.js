@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { CartOutlineIcon, ChevronRightIcon, HomeIcon } from "../assets/icons/icon-svg/iconSvg";
 import CartProduct from "../components/CartProduct";
+import CartProductTable from "../components/CartProductTable";
 import { checkoutItem } from "../features/product/productSlice";
 
 const Carts = () => {
@@ -34,14 +35,14 @@ const Carts = () => {
           </div>
         </div>
       </div>
-      <div className="container px-8 lg:px-20 pt-14 pb-28">
+      <div className="container px-8 lg:px-20 pt-14 pb-10">
         {cartLogin.length !== 0 ? (
-          <div className="flex">
-            <div className="w-full lg:w-2/3 flex">
+          <div className="flex flex-col lg:flex-row justify-center">
+            <div className="hidden w-full pb-10 lg:w-2/3 md:flex">
               <div className="w-full">
                 <table>
                   <thead>
-                    <tr className="[&>th]:text-start [&>th]:text-primary [&>th]:py-5 [&>th]:pr-20 ">
+                    <tr className="[&>th]:text-start [&>th]:text-primary [&>th]:py-3 border-b-2 ">
                       <th>Product</th>
                       <th></th>
                       <th>Price</th>
@@ -51,13 +52,23 @@ const Carts = () => {
                   </thead>
                   <tbody>
                     {cartLogin.map((item, index) => {
-                      return <CartProduct product={item} key={index} />;
+                      return <CartProductTable product={item} key={index} />;
                     })}
                   </tbody>
                 </table>
               </div>
             </div>
-            <div className="w-full h-fit ml-10 lg:w-1/3 bg-slate-100 shadow-sm rounded-xl">
+            <div className="flex md:hidden justify-start items-start pb-10">
+              <div className="w-full">
+                <h1 className="font-bold text-primary py-1 border-b-2">Product</h1>
+                <div className="grid justify-center gap-7 md:grid-cols-2 xl:grid-cols-4 pt-6">
+                  {cartLogin.map((item, index) => (
+                    <CartProduct product={item} key={index} />
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="w-full h-fit lg:ml-10 lg:w-1/3 bg-slate-100 shadow-sm rounded-xl">
               <div className="w-full px-8 py-10">
                 <div className="w-full border-b-2">
                   <h1 className="font-bold text-xl text-primary py-5 capitalize">Order Summary</h1>
@@ -69,7 +80,7 @@ const Carts = () => {
                   </div>
                 </div>
                 <div className="w-full py-5">
-                  <button className="w-full px-5 py-1 bg-blueButton rounded-full text-white brightness-110 transition ease-in-out duration-200 hover:brightness-100" onClick={handleCheckout}>
+                  <button className="w-full px-5 py-1 bg-blueButton rounded-xl text-white brightness-110 transition ease-in-out duration-200 hover:brightness-100" onClick={handleCheckout}>
                     Checkout
                   </button>
                 </div>

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { MinusIcon, PlusIcon } from "../assets/icons/icon-svg/iconSvg";
 import { addCart, removeItem } from "../features/product/productSlice";
 
-const CartProduct = ({ product }) => {
+const CartProductTable = ({ product }) => {
   const { products } = useSelector((store) => store.product);
   const { idProduct, quantity } = product.product;
   const { image, price, title, stock } = products.find((item) => item.id === idProduct);
@@ -22,16 +22,18 @@ const CartProduct = ({ product }) => {
   };
 
   return (
-    <div className="w-full flex text-primary border-b-2 py-3">
-      <div className="w-full">
-        <img src={image} alt={title} className="w-28 h-28 object-scale-down" />
-      </div>
-      <div className="w-full flex flex-col">
-        <h1 className="font-semibold">{title}</h1>
-        <h2 className="font-medium pt-1">
-          Price : <span className="font-semibold">${price}</span>
-        </h2>
-        <div className="flex flex-col py-3">
+    <tr className="border-b-2 py-2 align-top [&>td]:h-24 [&>td]:py-5 [&>td]:pr-5">
+      <td>
+        <img src={image} alt="" className="w-28 h-28 object-scale-down" />
+      </td>
+      <td>
+        <span className="font-medium">{title}</span>
+      </td>
+      <td>
+        <span className="font-medium">${price}</span>
+      </td>
+      <td>
+        <div className="flex flex-col">
           <div className="w-32 px-5 py-1 mr-5 bg-slate-50 shadow-md rounded-full flex flex-row justify-between">
             {qty <= 0 ? (
               <button className="transition ease-in-out duration-200 hover:text-secondary" disabled>
@@ -55,12 +57,12 @@ const CartProduct = ({ product }) => {
           </div>
           {stock <= 0 && <h2 className="text-sm font-medium text-red-500 pt-2">Stock tidak memenuhi</h2>}
         </div>
-        <h2 className="font-medium pt-1">
-          Price : <span className="font-semibold">${(quantity * price).toFixed(1)}</span>
-        </h2>
-      </div>
-    </div>
+      </td>
+      <td>
+        <span className="font-medium">${(quantity * price).toFixed(1)}</span>
+      </td>
+    </tr>
   );
 };
 
-export default CartProduct;
+export default CartProductTable;
