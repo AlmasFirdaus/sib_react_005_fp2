@@ -95,7 +95,7 @@ const Navbar = () => {
                       Cart
                       <span className="block h-0.5 w-0 group-hover:w-full transition-all duration-500  bg-secondary"></span>
                     </NavLink>
-                    <div className="absolute -right-1 flex justify-center items-center">
+                    <div className="flex absolute top-0 left-16 lg:-right-1 justify-center items-center">
                       <span className=" bg-secondary rounded-full text-primary text-xs font-semibold px-2 py-1">{amount}</span>
                     </div>
                   </li>
