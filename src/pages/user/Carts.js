@@ -24,9 +24,9 @@ const Carts = () => {
     navigate("/");
   };
   return (
-    <section className="pt-16 pb-10 font-quicksand bg-white">
+    <section className="pt-12 pb-10 lg:pt-16 font-quicksand bg-white">
       <div
-        className="w-full h-96 bg-fixed overflow-hidden flex justify-center items-center text-center relative"
+        className="w-full h-96 bg-fixed bg-center overflow-hidden flex justify-center items-center text-center relative"
         style={{ backgroundImage: `url(https://images.unsplash.com/photo-1586979816990-1819efcad0de?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80)` }}
       >
         <div className="w-full h-full bg-slate-400 mix-blend-multiply"></div>

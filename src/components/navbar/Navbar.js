@@ -101,6 +101,14 @@ const Navbar = () => {
                       </div>
                     </li>
                   )}
+                  {JSON.parse(localStorage.getItem("savedProduct")) && (
+                    <li className="group lg:flex relative">
+                      <NavLink to="/wishlist" className="z-20 text-base py-2 mx-6 font-quicksand font-semibold group-hover:text-secondary">
+                        Wishlist
+                        <span className="block h-0.5 w-0 group-hover:w-full transition-all duration-500  bg-secondary"></span>
+                      </NavLink>
+                    </li>
+                  )}
                   {!JSON.parse(localStorage.getItem("login")) ? (
                     <li className="group lg:flex">
                       <Link to="/login" className="lg:hidden bg-blueButton shadow-md rounded-full text-primaryLight text-base py-1 px-6 mx-6 font-quicksand font-semibold group-hover:brightness-110">

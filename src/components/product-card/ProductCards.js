@@ -1,14 +1,13 @@
-// import axios frosm "axios";
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { CartIcon } from "../../assets/icons/icon-svg/iconSvg";
-import { HeartIcon } from "../../assets/icons/icon-svg/iconSvg";
-import searchIcon from "../../assets/icons/icon-images/search-plus.svg";
-import { addCart } from "../../features/product/productSlice";
+import { CartIcon, HeartFillIcon, HeartIcon, ZoomIn } from "../../assets/icons/icon-svg/iconSvg";
+import { addCart, saveItem, unSaveItem } from "../../features/product/productSlice";
 
 const ProductCards = ({ item }) => {
   let { id, title, price, category, image, stock } = item;
+  const { saved, login } = useSelector((store) => store.product);
+  const isSaved = saved.some((save) => save.userId === login.id && save.productId === id);
   const slug = category.replace(" ", "-");
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -20,6 +19,16 @@ const ProductCards = ({ item }) => {
     }
   };
 
+  const handleSave = () => {
+    if (JSON.parse(!localStorage.getItem("login"))) {
+      navigate("/login");
+    } else {
+      dispatch(saveItem({ id }));
+    }
+  };
+  const handleUnSave = () => {
+    dispatch(unSaveItem({ id }));
+  };
   return (
     <div className="group flex">
       <div className="w-full px-6 py-7 mb-10 bg-white rounded-none shadow-md overflow-hidden relative flex flex-col transition ease-in-out duration-500 group-hover:scale-105 group-hover:shadow-xl ">
@@ -30,16 +39,28 @@ const ProductCards = ({ item }) => {
         </div>
         <div className="absolute h-full z-10 flex flex-col justify-center -right-10">
           <div className="flex flex-col h-1/4 justify-evenly">
-            <button className="w-10 h-10 bg-slate-200 opacity-50 shadow-md rounded-full flex justify-center items-center transition delay-100 duration-300 ease-in-out hover:bg-blueButton hover:opacity-100 group-hover:-translate-x-12">
-              <HeartIcon />
-            </button>
-            <button className="w-10 h-10 bg-slate-200 opacity-50 shadow-md rounded-full flex justify-center items-center transition delay-200 duration-300 ease-in-out hover:bg-blueButton hover:opacity-100 group-hover:-translate-x-12">
-              <img src={searchIcon} alt="" className="w-5" />
+            {isSaved ? (
+              <button
+                onClick={handleUnSave}
+                className="w-10 h-10 bg-slate-200 text-red-500 shadow-md rounded-full flex justify-center items-center transition delay-100 duration-200 ease-in-out hover:bg-blueButton hover:opacity-100 group-hover:-translate-x-12"
+              >
+                <HeartFillIcon />
+              </button>
+            ) : (
+              <button
+                onClick={handleSave}
+                className="w-10 h-10 bg-slate-200 opacity-50 shadow-md rounded-full flex justify-center items-center transition delay-100 duration-200 ease-in-out hover:bg-blueButton hover:text-white hover:opacity-100 group-hover:-translate-x-12 active:text-red-500"
+              >
+                <HeartIcon />
+              </button>
+            )}
+            <button className="w-10 h-10 bg-slate-200 opacity-50 shadow-md rounded-full flex justify-center items-center transition delay-200 duration-300 ease-in-out hover:bg-blueButton hover:text-white hover:opacity-100 group-hover:-translate-x-12">
+              <ZoomIn />
             </button>
           </div>
         </div>
         <div className="flex flex-1 justify-center text-center">
-          <Link to={`/products/${id}`} onClick={() => window.scrollTo(0, 0)} className="w-full lg:w-2/3 font-bold text-primary text-2xl mb-3 transition duration-300 hover:text-secondary">
+          <Link to={`/products/${id}`} onClick={() => window.scrollTo(0, 0)} className="w-full lg:w-2/3 font-bold text-primary text-2xl mb-3 transition duration-200 hover:text-secondary">
             {title}
           </Link>
         </div>

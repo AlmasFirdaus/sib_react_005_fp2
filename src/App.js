@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import Footer from "./components/footer/Footer";
 import Navbar from "./components/navbar/Navbar";
-import { calculateTotal, cartsExist, getProducts, loginUser } from "./features/product/productSlice";
+import { calculateTotal, cartsExist, getProducts, loginUser, saveExist } from "./features/product/productSlice";
 import Carts from "./pages/user/Carts";
 import DetailProduct from "./pages/user/DetailProduct";
 import Homepage from "./pages/user/Homepage";
 import Login from "./pages/all-user/Login";
+import Wishlist from "./pages/user/Wishlist";
 
 const App = () => {
   const { carts, products } = useSelector((store) => store.product);
@@ -20,6 +21,9 @@ const App = () => {
     }
     if (JSON.parse(localStorage.getItem("carts"))) {
       dispatch(cartsExist(JSON.parse(localStorage.getItem("carts"))));
+    }
+    if (JSON.parse(localStorage.getItem("savedProduct"))) {
+      dispatch(saveExist(JSON.parse(localStorage.getItem("savedProduct"))));
     }
   }, [dispatch]);
 
@@ -66,6 +70,16 @@ const App = () => {
             <>
               <Navbar />
               <Carts />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/wishlist"
+          element={
+            <>
+              <Navbar />
+              <Wishlist />
               <Footer />
             </>
           }

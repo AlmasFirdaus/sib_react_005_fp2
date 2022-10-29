@@ -7,6 +7,7 @@ const initialState = {
   carts: [],
   recap: [],
   login: [],
+  saved: [],
   amount: 0,
   total: 0,
 };
@@ -115,6 +116,35 @@ const productSlice = createSlice({
       state.amount = amount;
       state.total = total;
     },
+    saveExist: (state, action) => {
+      state.saved = action.payload;
+      localStorage.setItem("savedProduct", JSON.stringify(state.saved));
+    },
+    saveItem: (state, action) => {
+      const { id } = action.payload;
+      const saveLogin = state.saved.filter((save) => save.userId === state.login.id);
+      if (saveLogin.length > 0) {
+        const exist = saveLogin.find((item) => item.productId === id);
+        if (!exist) {
+          console.log("!exist");
+          state.saved.push({ userId: state.login.id, productId: id });
+        }
+      } else {
+        console.log("!saveLogin");
+        state.saved.push({ userId: state.login.id, productId: id });
+      }
+      localStorage.setItem("savedProduct", JSON.stringify(state.saved));
+    },
+    unSaveItem: (state, action) => {
+      const { id } = action.payload;
+      let saveLogin = state.saved.filter((save) => save.userId === state.login.id);
+      if (saveLogin.length > 0) {
+        state.saved = state.saved.filter((item) => item.userId !== state.login.id);
+        saveLogin = saveLogin.filter((item) => item.productId !== id);
+        state.saved = [...state.saved, ...saveLogin];
+      }
+      localStorage.setItem("savedProduct", JSON.stringify(state.saved));
+    },
     logoutUser: (state, action) => {
       state.login = [];
       localStorage.removeItem("login");
@@ -141,5 +171,5 @@ const productSlice = createSlice({
   },
 });
 
-export const { addCart, removeItem, calculateTotal, checkoutItem, logoutUser, cartsExist } = productSlice.actions;
+export const { addCart, removeItem, calculateTotal, checkoutItem, logoutUser, cartsExist, saveExist, saveItem, unSaveItem } = productSlice.actions;
 export default productSlice.reducer;
