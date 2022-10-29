@@ -62,37 +62,44 @@ const productSlice = createSlice({
       if (existCart && existProduct) {
         const cartItem = carts.find((cart) => cart.product.idProduct === id);
         cartItem.product.quantity = quantity ? quantity : cartItem.product.quantity + 1;
-        existProduct.stock -= 1;
+        // existProduct.stock -= 1;
       } else {
-        existProduct.stock -= quantity;
+        // existProduct.stock -= quantity;
         carts.push({ idUser: login.id, product: { idProduct: id, quantity: quantity } });
       }
       localStorage.setItem("carts", JSON.stringify(carts));
       localStorage.setItem("products", JSON.stringify(products));
     },
     removeItem: (state, action) => {
-      const { id, quantity } = action.payload;
+      const { id } = action.payload;
       const cartLogin = state.carts.filter((cart) => cart.idUser === state.login.id);
       const exist = cartLogin.find((cart) => cart.product.idProduct === id);
       const existProduct = state.products.find((product) => product.id === id);
       if (existProduct && exist.product.quantity === 1) {
         state.carts = state.carts.filter((cart) => cart.product.idProduct !== id);
-        existProduct.stock += quantity;
       } else {
         const cartItem = state.carts.find((cart) => cart.product.idProduct === id);
         cartItem.product.quantity = cartItem.product.quantity - 1;
-        existProduct.stock += 1;
       }
       localStorage.setItem("carts", JSON.stringify(state.carts));
       localStorage.setItem("products", JSON.stringify(state.products));
     },
     checkoutItem: (state, action) => {
       state.recap.push(action.payload);
+      const cartLogin = state.carts.filter((cart) => cart.idUser === state.login.id);
+      for (let itemCart of cartLogin) {
+        const existProduct = state.products.find((product) => product.id === itemCart.product.idProduct);
+        if (existProduct) {
+          existProduct.stock -= itemCart.product.quantity;
+          console.log("uyee");
+        }
+      }
       state.carts = [];
       state.amount = 0;
       state.total = 0;
       localStorage.setItem("carts", JSON.stringify(state.carts));
       localStorage.setItem("recap", JSON.stringify(state.recap));
+      localStorage.setItem("products", JSON.stringify(state.products));
     },
     calculateTotal: (state, action) => {
       let amount = 0;

@@ -82,7 +82,7 @@ const DetailProduct = () => {
                 <div className="flex flex-beetwen items-center">
                   <span className="font-medium text-lg mr-10">QTY</span>
                   <div className="w-32 px-5 py-2 mr-5 bg-slate-50 shadow-md rounded-full flex justify-between">
-                    <button className="transition ease-in-out duration-200 hover:text-secondary" onClick={() => setQuantity(quantity >= 1 ? quantity - 1 : 0)}>
+                    <button className="transition ease-in-out duration-200 hover:text-secondary" onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}>
                       <MinusIcon />
                     </button>
                     <input type="number" value={quantity} onChange={handleQuantity} className="min-w-[1rem] rounded-full text-center" />

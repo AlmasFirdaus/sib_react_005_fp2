@@ -43,7 +43,7 @@ const CartProduct = ({ product }) => {
               </button>
             )}
             <input type="number" value={qty} disabled className="min-w-[1rem] rounded-full text-center" />
-            {stock <= 0 ? (
+            {stock - quantity === 0 ? (
               <button className="transition ease-in-out duration-200 hover:text-secondary" disabled>
                 max
               </button>
@@ -53,7 +53,7 @@ const CartProduct = ({ product }) => {
               </button>
             )}
           </div>
-          {stock <= 0 && <h2 className="text-sm font-medium text-red-500 pt-2">Stock tidak memenuhi</h2>}
+          {stock - quantity === 0 && <h2 className="text-sm font-medium text-red-500 pt-2">Stock tidak memenuhi</h2>}
         </div>
         <h2 className="font-medium pt-1">
           Subtotal : <span className="font-semibold">${(quantity * price).toFixed(1)}</span>
