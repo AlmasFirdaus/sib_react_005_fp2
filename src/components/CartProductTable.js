@@ -6,7 +6,7 @@ import { addCart, removeItem } from "../features/product/productSlice";
 const CartProductTable = ({ product }) => {
   const { products } = useSelector((store) => store.product);
   const { idProduct, quantity } = product.product;
-  const { image, price, title, stock } = products.find((item) => item.id === idProduct);
+  const { image, price, title, stock, category } = products.find((item) => item.id === idProduct);
   const [qty, setQty] = useState(stock === 0 ? 0 : quantity);
   const dispatch = useDispatch();
 
@@ -27,10 +27,11 @@ const CartProductTable = ({ product }) => {
         <img src={image} alt="" className="w-28 h-28 object-scale-down" />
       </td>
       <td>
-        <span className="font-medium">{title}</span>
+        <h3 className="font-semibold ">{title}</h3>
+        <h4>{category}</h4>
       </td>
       <td>
-        <span className="font-medium">${price}</span>
+        <span className="font-semibold">${price}</span>
       </td>
       <td>
         <div className="flex flex-col">
@@ -59,7 +60,7 @@ const CartProductTable = ({ product }) => {
         </div>
       </td>
       <td>
-        <span className="font-medium">${(quantity * price).toFixed(1)}</span>
+        <span className="font-semibold">${(quantity * price).toFixed(1)}</span>
       </td>
     </tr>
   );

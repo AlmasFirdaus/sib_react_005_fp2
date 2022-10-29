@@ -56,7 +56,7 @@ const CartProduct = ({ product }) => {
           {stock <= 0 && <h2 className="text-sm font-medium text-red-500 pt-2">Stock tidak memenuhi</h2>}
         </div>
         <h2 className="font-medium pt-1">
-          Price : <span className="font-semibold">${(quantity * price).toFixed(1)}</span>
+          Subtotal : <span className="font-semibold">${(quantity * price).toFixed(1)}</span>
         </h2>
       </div>
     </div>

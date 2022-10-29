@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { CartOutlineIcon, ChevronRightIcon, HomeIcon } from "../assets/icons/icon-svg/iconSvg";
 import CartProduct from "../components/CartProduct";
 import CartProductTable from "../components/CartProductTable";
+// import RemoveItemModal from "../components/modal/RemoveItemModal";
 import { checkoutItem } from "../features/product/productSlice";
 
 const Carts = () => {
@@ -94,6 +95,8 @@ const Carts = () => {
           </div>
         )}
       </div>
+
+      {/* <RemoveItemModal /> */}
     </section>
   );
 };
