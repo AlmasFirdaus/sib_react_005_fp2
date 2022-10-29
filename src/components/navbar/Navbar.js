@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import logo1 from "../assets/icons/icon-images/logo-1.png";
-import { logoutUser } from "../features/product/productSlice";
+import logo1 from "../../assets/icons/icon-images/logo-1.png";
+import { logoutUser } from "../../features/product/productSlice";
 
 const Navbar = () => {
   const { amount } = useSelector((store) => store.product);
@@ -90,15 +90,17 @@ const Navbar = () => {
                       </NavLink>
                     )}
                   </li>
-                  <li className="group lg:flex relative">
-                    <NavLink to="/cart" className="z-20 text-base py-2 mx-6 font-quicksand font-semibold group-hover:text-secondary">
-                      Cart
-                      <span className="block h-0.5 w-0 group-hover:w-full transition-all duration-500  bg-secondary"></span>
-                    </NavLink>
-                    <div className="flex absolute top-0 left-16 lg:-right-1 justify-center items-center">
-                      <span className=" bg-secondary rounded-full text-primary text-xs font-semibold px-2 py-1">{amount}</span>
-                    </div>
-                  </li>
+                  {JSON.parse(localStorage.getItem("login")) && (
+                    <li className="group lg:flex relative">
+                      <NavLink to="/cart" className="z-20 text-base py-2 mx-6 font-quicksand font-semibold group-hover:text-secondary">
+                        Cart
+                        <span className="block h-0.5 w-0 group-hover:w-full transition-all duration-500  bg-secondary"></span>
+                      </NavLink>
+                      <div className="flex absolute top-0 left-16 lg:-right-1 justify-center items-center">
+                        <span className=" bg-secondary rounded-full text-primary text-xs font-semibold px-2 py-1">{amount}</span>
+                      </div>
+                    </li>
+                  )}
                   {!JSON.parse(localStorage.getItem("login")) ? (
                     <li className="group lg:flex">
                       <Link to="/login" className="lg:hidden bg-blueButton shadow-md rounded-full text-primaryLight text-base py-1 px-6 mx-6 font-quicksand font-semibold group-hover:brightness-110">
@@ -106,7 +108,14 @@ const Navbar = () => {
                       </Link>
                     </li>
                   ) : (
-                    ""
+                    <div className="group lg:flex">
+                      <button
+                        className="lg:hidden outline-1 shadow-md rounded-full text-primary text-base py-1 px-6 mx-6 font-quicksand font-semibold transition ease-in-out duration-200 group-hover:brightness-110 hover:bg-blueButton hover:text-primaryLight"
+                        onClick={handleLogout}
+                      >
+                        Logout
+                      </button>
+                    </div>
                   )}
                 </ul>
                 {/* <form onSubmit={handleSubmit} className="mx-6 flex">

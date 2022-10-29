@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
+import Footer from "./components/footer/Footer";
+import Navbar from "./components/navbar/Navbar";
 import { calculateTotal, cartsExist, getProducts, loginUser } from "./features/product/productSlice";
-import Carts from "./pages/Carts";
-import DetailProduct from "./pages/DetailProduct";
-import Homepage from "./pages/Homepage";
-import Login from "./pages/Login";
+import Carts from "./pages/user/Carts";
+import DetailProduct from "./pages/user/DetailProduct";
+import Homepage from "./pages/user/Homepage";
+import Login from "./pages/all-user/Login";
 
 const App = () => {
   const { carts, products } = useSelector((store) => store.product);

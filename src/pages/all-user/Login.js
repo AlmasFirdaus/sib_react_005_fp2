@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { loginUser } from "../features/product/productSlice";
+import { loginUser } from "../../features/product/productSlice";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [empty, setEmpty] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -17,7 +18,12 @@ const Login = () => {
   };
   const handleLogin = (e) => {
     e.preventDefault();
-    dispatch(loginUser({ username, password, redirect }));
+    if (username === "" || password === "") {
+      setEmpty(true);
+    } else {
+      setEmpty(false);
+      dispatch(loginUser({ username, password, redirect }));
+    }
   };
 
   const redirect = (status) => {
@@ -48,12 +54,13 @@ const Login = () => {
                   Password
                 </label>
                 <input type="password" onChange={handlePassword} value={password} className="w-full bg-primaryLight border-b-2 outline-none" />
+                <div className="w-full py-4 text-red-500 italic capitalize tracking-wide">{empty && <p>Please fill in the login form first</p>}</div>
               </div>
               <div className="flex justify-end items-center">
                 <Link to="/" className="px-7 py-1 mr-5 rounded-full text-primary transition duration-200 hover:bg-blueButton hover:text-primaryLight capitalize">
                   Back
                 </Link>
-                <button className="px-7 py-1 bg-blueButton brightness-110 rounded-full text-primaryLight transition duration-100 hover:brightness-100 capitalize">submit</button>
+                <button className="px-7 py-1 bg-blueButton brightness-110 rounded-full text-primaryLight transition duration-100 hover:brightness-100 capitalize">Sign In</button>
               </div>
             </form>
           </div>

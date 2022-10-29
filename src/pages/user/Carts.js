@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { CartOutlineIcon, ChevronRightIcon, HomeIcon } from "../assets/icons/icon-svg/iconSvg";
-import CartProduct from "../components/CartProduct";
-import CartProductTable from "../components/CartProductTable";
+import { CartOutlineIcon, ChevronRightIcon, HomeIcon } from "../../assets/icons/icon-svg/iconSvg";
+import CartProduct from "../../components/cart/CartProduct";
+import CartProductTable from "../../components/cart/CartProductTable";
 // import RemoveItemModal from "../components/modal/RemoveItemModal";
-import { checkoutItem } from "../features/product/productSlice";
+import { checkoutItem } from "../../features/product/productSlice";
 
 const Carts = () => {
   let { carts, total, login } = useSelector((store) => store.product);
   const cartLogin = carts.filter((cart) => cart.idUser === login.id);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!JSON.parse(localStorage.getItem("login"))) {
+      navigate("/login");
+    }
+  });
 
   const handleCheckout = () => {
     dispatch(checkoutItem(cartLogin));

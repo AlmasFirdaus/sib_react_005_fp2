@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import ProductCards from "./ProductCards";
+import ProductCards from "../product-card/ProductCards";
 
 const ProductCategory = () => {
   let { products, isLoading } = useSelector((store) => store.product);

@@ -1,8 +1,8 @@
 import React from "react";
-import homepage from "../assets/images/homepage1.jpg";
-import NavCategory from "../components/NavCategory";
-import ProductCategory from "../components/ProductCategory";
-import image from "../assets/images/homepage.jpg";
+import homepage from "../../assets/images/homepage1.jpg";
+import NavCategory from "../../components/category/NavCategory";
+import ProductCategory from "../../components/category/ProductCategory";
+import image from "../../assets/images/homepage.jpg";
 
 const Homepage = () => {
   return (

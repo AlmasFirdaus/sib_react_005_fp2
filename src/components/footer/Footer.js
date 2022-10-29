@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../assets/icons/icon-images/logo-1.png";
+import logo from "../../assets/icons/icon-images/logo-1.png";
 
 const Footer = () => {
   const location = useLocation().pathname;
@@ -10,7 +10,7 @@ const Footer = () => {
   };
   return (
     <>
-      <footer className="bg-zinc-100 pt-24 pb-12 border-t-2">
+      <footer className="bg-zinc-100 pt-24 pb-12 border-t-2 ">
         <div className="container">
           <div className="flex flex-wrap">
             <div className="mb-12 w-full px-4 font-medium text-primary md:w-1/3 [&>p]:mt-1">
@@ -73,7 +73,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="w-full border-t border-slate-700 pt-10">
+          <div className="w-full border-t border-primary pt-10">
             <p className="text-center text-xs font-medium text-slate-500">
               Dibuat dengan <span className="text-pink-500">❤️</span> oleh RCTN-KS05-KEL07
             </p>

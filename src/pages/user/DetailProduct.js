@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-import ProductCards from "../components/ProductCards";
-import { HomeIcon, ChevronRightIcon, MinusIcon, PlusIcon, CartIcon, HeartIcon } from "../assets/icons/icon-svg/iconSvg";
-import { addCart } from "../features/product/productSlice";
+import ProductCards from "../../components/product-card/ProductCards";
+import { HomeIcon, ChevronRightIcon, MinusIcon, PlusIcon, CartIcon, HeartIcon } from "../../assets/icons/icon-svg/iconSvg";
+import { addCart } from "../../features/product/productSlice";
 
 const DetailProduct = () => {
   const id = Number(useParams().id);
@@ -86,9 +86,15 @@ const DetailProduct = () => {
                       <MinusIcon />
                     </button>
                     <input type="number" value={quantity} onChange={handleQuantity} className="min-w-[1rem] rounded-full text-center" />
-                    <button className="transition ease-in-out duration-200 hover:text-secondary" onClick={() => setQuantity(quantity < product.stock ? quantity + 1 : quantity)}>
-                      <PlusIcon />
-                    </button>
+                    {product.stock - quantity === 0 ? (
+                      <button className="transition ease-in-out duration-200 hover:text-secondary capitalize" disabled>
+                        Max
+                      </button>
+                    ) : (
+                      <button className="transition ease-in-out duration-200 hover:text-secondary" onClick={() => setQuantity(quantity < product.stock ? quantity + 1 : quantity)}>
+                        <PlusIcon />
+                      </button>
+                    )}
                   </div>
                 </div>
 
