@@ -3,12 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import Footer from "./components/footer/Footer";
 import Navbar from "./components/navbar/Navbar";
-import { calculateTotal, cartsExist, getProducts, loginUser, saveExist } from "./features/product/productSlice";
+import { calculateTotal, cartsExist, getProducts, loginUser, recapExist, saveExist } from "./features/product/productSlice";
 import Carts from "./pages/user/Carts";
 import DetailProduct from "./pages/user/DetailProduct";
 import Homepage from "./pages/user/Homepage";
 import Login from "./pages/all-user/Login";
 import Wishlist from "./pages/user/Wishlist";
+import ProtectedRoute from "./components/login/ProtectedRoute";
+import DashboardAdmin from "./pages/admin/DashboardAdmin";
+import NavbarAdmin from "./components/navbar/NavbarAdmin";
 
 const App = () => {
   const { carts, products } = useSelector((store) => store.product);
@@ -24,6 +27,9 @@ const App = () => {
     }
     if (JSON.parse(localStorage.getItem("savedProduct"))) {
       dispatch(saveExist(JSON.parse(localStorage.getItem("savedProduct"))));
+    }
+    if (JSON.parse(localStorage.getItem("recap"))) {
+      dispatch(recapExist(JSON.parse(localStorage.getItem("recap"))));
     }
   }, [dispatch]);
 
@@ -84,7 +90,23 @@ const App = () => {
             </>
           }
         />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/login"
+          element={
+            <ProtectedRoute>
+              <Login />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <>
+              <NavbarAdmin />
+              <DashboardAdmin />
+            </>
+          }
+        />
       </Routes>
     </div>
   );

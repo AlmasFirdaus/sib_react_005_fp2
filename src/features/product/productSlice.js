@@ -30,6 +30,10 @@ export const loginUser = createAsyncThunk("products/loginUser", async ({ usernam
     if (isLogin) {
       return isLogin;
     }
+    if (username === "admin@bukapedia.com" && password === "admin123") {
+      redirect({ role: "admin" });
+      return { id: 99, role: "admin", user: username, login: true };
+    }
     const resPost = await axios.post("https://fakestoreapi.com/auth/login", {
       username: username !== "" ? username : " ",
       password: password !== "" ? password : " ",
@@ -38,7 +42,7 @@ export const loginUser = createAsyncThunk("products/loginUser", async ({ usernam
     let find = resGet.data.find((res) => res.username === username);
 
     if (resPost.data.token) {
-      redirect(true);
+      redirect({ role: "user" });
       return { id: find.id, user: `${find.name.firstname} ${find.name.lastname}`, token: resPost.data.token, login: true };
     }
   } catch (error) {
@@ -85,14 +89,19 @@ const productSlice = createSlice({
       localStorage.setItem("carts", JSON.stringify(state.carts));
       localStorage.setItem("products", JSON.stringify(state.products));
     },
+    recapExist: (state, action) => {
+      state.recap = action.payload;
+      localStorage.setItem("recap", JSON.stringify(state.recap));
+    },
     checkoutItem: (state, action) => {
-      state.recap.push(action.payload);
+      const product = [];
+      action.payload.map((item) => product.push(item.product));
+      state.recap.push({ id: state.recap.length + 1, idUser: state.login.id, product: product });
       const cartLogin = state.carts.filter((cart) => cart.idUser === state.login.id);
       for (let itemCart of cartLogin) {
         const existProduct = state.products.find((product) => product.id === itemCart.product.idProduct);
         if (existProduct) {
           existProduct.stock -= itemCart.product.quantity;
-          console.log("uyee");
         }
       }
       state.carts = [];
@@ -171,5 +180,5 @@ const productSlice = createSlice({
   },
 });
 
-export const { addCart, removeItem, calculateTotal, checkoutItem, logoutUser, cartsExist, saveExist, saveItem, unSaveItem } = productSlice.actions;
+export const { addCart, removeItem, calculateTotal, recapExist, checkoutItem, logoutUser, cartsExist, saveExist, saveItem, unSaveItem } = productSlice.actions;
 export default productSlice.reducer;

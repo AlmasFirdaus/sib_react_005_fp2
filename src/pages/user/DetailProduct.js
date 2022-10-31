@@ -7,13 +7,14 @@ import { addCart } from "../../features/product/productSlice";
 
 const DetailProduct = () => {
   const id = Number(useParams().id);
-  const { products, carts } = useSelector((store) => store.product);
+  const { products, carts, login } = useSelector((store) => store.product);
   let product = products ? products.find((product) => product.id === id) : "";
   let inCart = carts ? carts.find((cart) => cart.product.idProduct === id) : null;
   const relatedProducts = products ? products.filter((relatedProduct) => relatedProduct.category === product.category) : "";
   const [quantity, setQuantity] = useState(inCart ? inCart.product.quantity : 1);
   const dispatch = useDispatch();
-  let { pathname } = useLocation();
+  let location,
+    { pathname } = useLocation();
   const locations = pathname.substring(1).split("/");
 
   // delete soon
@@ -25,8 +26,8 @@ const DetailProduct = () => {
   };
 
   const handleCart = () => {
-    if (JSON.parse(!localStorage.getItem("login"))) {
-      navigate("/login");
+    if (login === null) {
+      navigate("/login", { state: { from: location, hallo: "hallo" } });
     } else {
       dispatch(addCart({ id: id, quantity: quantity }));
       navigate("/cart");

@@ -27,7 +27,9 @@ const Login = () => {
   };
 
   const redirect = (status) => {
-    if (status) {
+    if (status.role === "admin") {
+      navigate("/admin");
+    } else {
       navigate("/");
     }
   };

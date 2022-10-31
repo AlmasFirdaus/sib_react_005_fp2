@@ -21,6 +21,7 @@ const Carts = () => {
 
   const handleCheckout = () => {
     dispatch(checkoutItem(cartLogin));
+    window.scrollTo(0, 0);
     navigate("/");
   };
   return (
