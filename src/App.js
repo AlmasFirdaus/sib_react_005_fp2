@@ -9,8 +9,8 @@ import DetailProduct from "./pages/user/DetailProduct";
 import Homepage from "./pages/user/Homepage";
 import Login from "./pages/all-user/Login";
 import Wishlist from "./pages/user/Wishlist";
-import DashboardAdmin from "./pages/admin/DashboardAdmin";
 import NavbarAdmin from "./components/navbar/NavbarAdmin";
+import TableRecap from "./components/recapitulation/TableRecap";
 import ProtectedRouteAdmin from "./components/protectedRoute/ProtectedRouteAdmin";
 import ProtectedRouteUser from "./components/protectedRoute/ProtectedRouteUser";
 import ProtectedRouteLogin from "./components/protectedRoute/ProtectedRouteLogin";
@@ -101,7 +101,7 @@ const App = () => {
             element={
               <>
                 <NavbarAdmin />
-                <DashboardAdmin />
+                <TableRecap />
               </>
             }
           />
