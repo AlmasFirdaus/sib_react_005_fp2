@@ -6,7 +6,7 @@ import { ProfileIcon } from "../../assets/icons/icon-svg/iconSvg";
 import { logoutUser } from "../../features/product/productSlice";
 
 const Navbar = () => {
-  const { amount, login } = useSelector((store) => store.product);
+  const { login } = useSelector((store) => store.product);
   const location = useLocation().pathname;
   const dispatch = useDispatch();
   const hamburger = document.querySelector("#hamburger");
@@ -85,45 +85,35 @@ const Navbar = () => {
                   </li>
                   <li className="group lg:flex">
                     {location === "/" ? (
-                      <a href="#home" className="text-base py-2 mx-6 font-quicksand font-semibold group-hover:text-secondary">
-                        Home
+                      <a href="#product" className="text-base py-2 mx-6 font-quicksand font-semibold group-hover:text-secondary">
+                        Product
                         <span className="block h-0.5 w-0 group-hover:w-full transition-all duration-500  bg-secondary"></span>
                       </a>
                     ) : (
-                      <NavLink to="/" onClick={() => window.scrollTo(0, 0)} className="text-base py-2 mx-6 font-quicksand font-semibold group-hover:text-secondary">
-                        Home
+                      <NavLink to="/product" onClick={() => window.scrollTo(0, 0)} className="text-base py-2 mx-6 font-quicksand font-semibold group-hover:text-secondary">
+                        Product
                         <span className="block h-0.5 w-0 group-hover:w-full transition-all duration-500  bg-secondary"></span>
                       </NavLink>
                     )}
                   </li>
                   <li className="group lg:flex">
-                    {location === "/" ? (
-                      <a href="#category" className="text-base py-2 mx-6 font-quicksand font-semibold group-hover:text-secondary">
-                        Category
+                    {location === "/admin" ? (
+                      <a href="#rekap" className="text-base py-2 mx-6 font-quicksand font-semibold group-hover:text-secondary">
+                        Rekap Penjualan
                         <span className="block h-0.5 w-0 group-hover:w-full transition-all duration-500  bg-secondary"></span>
                       </a>
                     ) : (
-                      <NavLink to="/#category" onClick={() => window.scrollTo(0, 792)} className="text-base py-2 mx-6 font-quicksand font-semibold group-hover:text-secondary">
-                        Category
+                      <NavLink to="/recapitulation" onClick={() => window.scrollTo(0, 792)} className="text-base py-2 mx-6 font-quicksand font-semibold group-hover:text-secondary">
+                        Rekap Penjualan
                         <span className="block h-0.5 w-0 group-hover:w-full transition-all duration-500  bg-secondary"></span>
                       </NavLink>
                     )}
                   </li>
-                  {login.id && (
-                    <li className="group lg:flex relative">
-                      <NavLink to="/cart" onClick={() => window.scrollTo(0, 0)} className="z-20 text-base py-2 mx-6 font-quicksand font-semibold group-hover:text-secondary">
-                        Cart
-                        <span className="block h-0.5 w-0 group-hover:w-full transition-all duration-500  bg-secondary"></span>
-                      </NavLink>
-                      <div className="flex absolute top-0 left-16 lg:-right-1 justify-center items-center">
-                        <span className=" bg-secondary rounded-full text-primary text-xs font-semibold px-2 py-1">{amount}</span>
-                      </div>
-                    </li>
-                  )}
+                  
                   {JSON.parse(localStorage.getItem("savedProduct")) && (
                     <li className="group lg:flex relative">
-                      <NavLink to="/wishlist" onClick={() => window.scrollTo(0, 0)} className="z-20 text-base py-2 mx-6 font-quicksand font-semibold group-hover:text-secondary">
-                        Wishlist
+                      <NavLink to="/dashboard" onClick={() => window.scrollTo(0, 0)} className="z-20 text-base py-2 mx-6 font-quicksand font-semibold group-hover:text-secondary">
+                        Dashboard
                         <span className="block h-0.5 w-0 group-hover:w-full transition-all duration-500  bg-secondary"></span>
                       </NavLink>
                     </li>
@@ -139,7 +129,7 @@ const Navbar = () => {
                       <button
                         className="lg:hidden outline-1 shadow-md rounded-full text-primary text-base py-1 px-6 mx-6 font-quicksand font-semibold transition ease-in-out duration-200 group-hover:brightness-110 hover:bg-blueButton hover:text-primaryLight"
                         onClick={handleLogout}
-                      >
+                        >
                         Logout
                       </button>
                     </div>

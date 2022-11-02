@@ -10,8 +10,9 @@ import Homepage from "./pages/user/Homepage";
 import Login from "./pages/all-user/Login";
 import Wishlist from "./pages/user/Wishlist";
 import ProtectedRoute from "./components/login/ProtectedRoute";
-import DashboardAdmin from "./pages/admin/DashboardAdmin";
+// import DashboardAdmin from "./pages/admin/DashboardAdmin";
 import NavbarAdmin from "./components/navbar/NavbarAdmin";
+import TableRecap from "./components/recapitulation/TableRecap";
 
 const App = () => {
   const { carts, products } = useSelector((store) => store.product);
@@ -103,7 +104,8 @@ const App = () => {
           element={
             <>
               <NavbarAdmin />
-              <DashboardAdmin />
+              <TableRecap/>
+              {/* <DashboardAdmin /> */}
             </>
           }
         />
