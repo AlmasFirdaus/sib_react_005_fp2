@@ -9,11 +9,18 @@ import DetailProduct from "./pages/user/DetailProduct";
 import Homepage from "./pages/user/Homepage";
 import Login from "./pages/all-user/Login";
 import Wishlist from "./pages/user/Wishlist";
+<<<<<<< HEAD
 import DashboardAdmin from "./pages/admin/DashboardAdmin";
 import NavbarAdmin from "./components/navbar/NavbarAdmin";
 import ProtectedRouteAdmin from "./components/protectedRoute/ProtectedRouteAdmin";
 import ProtectedRouteUser from "./components/protectedRoute/ProtectedRouteUser";
 import ProtectedRouteLogin from "./components/protectedRoute/ProtectedRouteLogin";
+=======
+import ProtectedRoute from "./components/login/ProtectedRoute";
+// import DashboardAdmin from "./pages/admin/DashboardAdmin";
+import NavbarAdmin from "./components/navbar/NavbarAdmin";
+import TableRecap from "./components/recapitulation/TableRecap";
+>>>>>>> 6d4d2096af8218258d83485e55f07e1e51b6cab7
 
 const App = () => {
   const { carts, products } = useSelector((store) => store.product);
@@ -42,6 +49,7 @@ const App = () => {
   return (
     <div className="bg-zinc-100">
       <Routes>
+<<<<<<< HEAD
         <Route element={<ProtectedRouteUser />}>
           <Route
             path="/"
@@ -117,6 +125,76 @@ const App = () => {
             }
           />
         </Route>
+=======
+        <Route
+          path="/"
+          element={
+            <>
+              <Navbar />
+              <Homepage />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/:category"
+          element={
+            <>
+              <Navbar />
+              <Homepage />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/products/:id"
+          element={
+            <>
+              <Navbar />
+              <DetailProduct />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <>
+              <Navbar />
+              <Carts />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/wishlist"
+          element={
+            <>
+              <Navbar />
+              <Wishlist />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <ProtectedRoute>
+              <Login />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <>
+              <NavbarAdmin />
+              <TableRecap/>
+              {/* <DashboardAdmin /> */}
+            </>
+          }
+        />
+>>>>>>> 6d4d2096af8218258d83485e55f07e1e51b6cab7
       </Routes>
     </div>
   );

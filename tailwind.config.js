@@ -17,6 +17,7 @@ module.exports = {
         primaryLight: "#F8F8F8",
         secondary: "#DBA637",
         blueButton: "#4666A3",
+        redButton: "#B20000"
       },
     },
   },
