@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import logo1 from "../../assets/icons/icon-images/logo-1.png";
 import { ProfileIcon } from "../../assets/icons/icon-svg/iconSvg";
 import { logoutUser } from "../../features/product/productSlice";
@@ -9,6 +9,7 @@ const Navbar = () => {
   const { amount, login } = useSelector((store) => store.product);
   const location = useLocation().pathname;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const hamburger = document.querySelector("#hamburger");
   const navMenu = document.querySelector("#nav-menu");
 
@@ -53,6 +54,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     dispatch(logoutUser());
+    navigate("/");
   };
 
   return (
@@ -161,7 +163,7 @@ const Navbar = () => {
           ) : (
             <div className="hidden group pr-5 lg:flex lg:justify-center ">
               <div className="w-full">
-                <button id="profileClick" className="[&>*]:mr-2 flex justify-center items-center capitalize transition duration-200 ease-in-out hover:text-secondary" onClick={handleProfile}>
+                <button id="profileClick" className="[&>*]:mr-2 flex justify-center items-center uppercase transition duration-200 ease-in-out hover:text-secondary" onClick={handleProfile}>
                   <ProfileIcon />
                   {login.user}
                 </button>

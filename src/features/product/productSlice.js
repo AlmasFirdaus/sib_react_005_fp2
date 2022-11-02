@@ -43,7 +43,7 @@ export const loginUser = createAsyncThunk("products/loginUser", async ({ usernam
 
     if (resPost.data.token) {
       redirect({ role: "user" });
-      return { id: find.id, user: `${find.name.firstname} ${find.name.lastname}`, token: resPost.data.token, login: true };
+      return { id: find.id, role: "user", user: `${find.name.firstname} ${find.name.lastname}`, token: resPost.data.token, login: true };
     }
   } catch (error) {
     console.log(error);

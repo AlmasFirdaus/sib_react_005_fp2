@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import logo1 from "../../assets/icons/icon-images/logo-1.png";
 import { ProfileIcon } from "../../assets/icons/icon-svg/iconSvg";
 import { logoutUser } from "../../features/product/productSlice";
@@ -9,6 +9,7 @@ const Navbar = () => {
   const { amount, login } = useSelector((store) => store.product);
   const location = useLocation().pathname;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const hamburger = document.querySelector("#hamburger");
   const navMenu = document.querySelector("#nav-menu");
 
@@ -53,6 +54,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     dispatch(logoutUser());
+    navigate("/");
   };
 
   return (
