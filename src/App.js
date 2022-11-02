@@ -190,6 +190,7 @@ const App = () => {
             <>
               <NavbarAdmin />
               <TableRecap/>
+              <Footer/>
               {/* <DashboardAdmin /> */}
             </>
           }
