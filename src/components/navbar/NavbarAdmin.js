@@ -92,26 +92,26 @@ const Navbar = () => {
                         <span className="block h-0.5 w-0 group-hover:w-full transition-all duration-500  bg-secondary"></span>
                       </a>
                     ) : (
-                      <NavLink to="/product" onClick={() => window.scrollTo(0, 0)} className="text-base py-2 mx-6 font-quicksand font-semibold group-hover:text-secondary">
+                      <NavLink to="/admin" onClick={() => window.scrollTo(0, 0)} className="text-base py-2 mx-6 font-quicksand font-semibold group-hover:text-secondary">
                         Product
                         <span className="block h-0.5 w-0 group-hover:w-full transition-all duration-500  bg-secondary"></span>
                       </NavLink>
                     )}
                   </li>
                   <li className="group lg:flex">
-                    {location === "/admin" ? (
-                      <a href="#rekap" className="text-base py-2 mx-6 font-quicksand font-semibold group-hover:text-secondary">
-                        Rekap Penjualan
+                    {location === "/admin/sales-recap" ? (
+                      <a href="#sales-recap" className="text-base py-2 mx-6 font-quicksand font-semibold capitalize group-hover:text-secondary">
+                        Sales Recap
                         <span className="block h-0.5 w-0 group-hover:w-full transition-all duration-500  bg-secondary"></span>
                       </a>
                     ) : (
-                      <NavLink to="/recapitulation" onClick={() => window.scrollTo(0, 792)} className="text-base py-2 mx-6 font-quicksand font-semibold group-hover:text-secondary">
-                        Rekap Penjualan
+                      <NavLink to="/admin/sales-recap" onClick={() => window.scrollTo(0, 792)} className="text-base py-2 mx-6 font-quicksand font-semibold capitalize group-hover:text-secondary">
+                        Sales Recap
                         <span className="block h-0.5 w-0 group-hover:w-full transition-all duration-500  bg-secondary"></span>
                       </NavLink>
                     )}
                   </li>
-                  
+
                   {JSON.parse(localStorage.getItem("savedProduct")) && (
                     <li className="group lg:flex relative">
                       <NavLink to="/dashboard" onClick={() => window.scrollTo(0, 0)} className="z-20 text-base py-2 mx-6 font-quicksand font-semibold group-hover:text-secondary">
@@ -131,7 +131,7 @@ const Navbar = () => {
                       <button
                         className="lg:hidden outline-1 shadow-md rounded-full text-primary text-base py-1 px-6 mx-6 font-quicksand font-semibold transition ease-in-out duration-200 group-hover:brightness-110 hover:bg-blueButton hover:text-primaryLight"
                         onClick={handleLogout}
-                        >
+                      >
                         Logout
                       </button>
                     </div>

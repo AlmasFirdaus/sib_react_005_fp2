@@ -13,7 +13,7 @@ import NavbarAdmin from "./components/navbar/NavbarAdmin";
 import ProtectedRouteAdmin from "./components/protectedRoute/ProtectedRouteAdmin";
 import ProtectedRouteUser from "./components/protectedRoute/ProtectedRouteUser";
 import ProtectedRouteLogin from "./components/protectedRoute/ProtectedRouteLogin";
-// import TableRecap from "./pages/admin/RecapitulationAdmin";
+import TableRecap from "./pages/admin/RecapitulationAdmin";
 import ProductsAdmin from "./pages/admin/ProductsAdmin";
 
 const App = () => {
@@ -105,8 +105,16 @@ const App = () => {
             element={
               <>
                 <NavbarAdmin />
-                {/* <TableRecap /> */}
-                <ProductsAdmin/>
+                <ProductsAdmin />
+              </>
+            }
+          />
+          <Route
+            path="/admin/sales-recap"
+            element={
+              <>
+                <NavbarAdmin />
+                <TableRecap />
               </>
             }
           />

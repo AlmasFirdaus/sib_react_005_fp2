@@ -54,6 +54,12 @@ const productSlice = createSlice({
   name: "product",
   initialState: initialState,
   reducers: {
+    updateStock: (state, action) => {
+      const { id, stock } = action.payload;
+      const productExist = state.products.find((item) => item.id === id);
+      productExist.stock = stock;
+      localStorage.setItem("products", JSON.stringify(state.products));
+    },
     cartsExist: (state, action) => {
       state.carts = action.payload;
       localStorage.setItem("carts", JSON.stringify(state.carts));
@@ -193,5 +199,5 @@ const productSlice = createSlice({
   },
 });
 
-export const { addCart, removeItem, calculateTotal, recapExist, checkoutItem, logoutUser, amountExist, cartsExist, saveExist, saveItem, unSaveItem } = productSlice.actions;
+export const { updateStock, addCart, removeItem, calculateTotal, recapExist, checkoutItem, logoutUser, amountExist, cartsExist, saveExist, saveItem, unSaveItem } = productSlice.actions;
 export default productSlice.reducer;
