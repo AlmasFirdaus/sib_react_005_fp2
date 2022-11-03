@@ -53,7 +53,7 @@ const Carts = () => {
                   <thead>
                     <tr className="[&>th]:text-start [&>th]:text-primary [&>th]:py-3 border-b-2 ">
                       <th>Product</th>
-                      <th></th>
+                      <th className="xl:min-w-[27.5rem]"></th>
                       <th>Price</th>
                       <th>Qty</th>
                       <th>Subtotal</th>

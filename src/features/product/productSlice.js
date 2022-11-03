@@ -104,7 +104,7 @@ const productSlice = createSlice({
           existProduct.stock -= itemCart.product.quantity;
         }
       }
-      state.carts = [];
+      state.carts = state.carts.filter((item) => item.idUser !== state.login.id);
       state.amount = state.amount.filter((item) => item.idUser !== state.login.id);
       localStorage.setItem("carts", JSON.stringify(state.carts));
       localStorage.setItem("recap", JSON.stringify(state.recap));
