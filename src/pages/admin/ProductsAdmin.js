@@ -8,7 +8,8 @@ const ProductsAdmin = () => {
         <table className="border w-3/5 divide-y divide-gray-200">
           <thead className="bg-gray-5">
             <tr>
-              <th className="columns-3 px-6 py-3 text-sm font-bold text-gray-500 uppercase ">Product</th>
+             <th>No</th>
+              <th colSpan={2} className="min-w-[30rem] px-6 py-3 text-sm font-bold text-gray-500 uppercase ">Product</th>
               <th className="px-6 py-3 text-sm font-bold text-gray-500 uppercase ">Stock</th>
               <th className="px-6 py-3 text-sm font-bold text-gray-500 uppercase ">Action</th>
             </tr>

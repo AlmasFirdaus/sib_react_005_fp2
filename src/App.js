@@ -10,11 +10,11 @@ import Homepage from "./pages/user/Homepage";
 import Login from "./pages/all-user/Login";
 import Wishlist from "./pages/user/Wishlist";
 import NavbarAdmin from "./components/navbar/NavbarAdmin";
-import TableRecap from "./pages/admin/RecapitulationAdmin";
 import ProtectedRouteAdmin from "./components/protectedRoute/ProtectedRouteAdmin";
 import ProtectedRouteUser from "./components/protectedRoute/ProtectedRouteUser";
 import ProtectedRouteLogin from "./components/protectedRoute/ProtectedRouteLogin";
-// import ProductsAdmin from "./pages/admin/ProductsAdmin";
+// import TableRecap from "./pages/admin/RecapitulationAdmin";
+import ProductsAdmin from "./pages/admin/ProductsAdmin";
 
 const App = () => {
   const { carts, products, login } = useSelector((store) => store.product);
@@ -105,8 +105,8 @@ const App = () => {
             element={
               <>
                 <NavbarAdmin />
-                <TableRecap />
-                {/* <ProductsAdmin/> */}
+                {/* <TableRecap /> */}
+                <ProductsAdmin/>
               </>
             }
           />

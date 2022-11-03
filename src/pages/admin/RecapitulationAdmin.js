@@ -30,10 +30,10 @@ const TableRecap = () => {
                 <CartRekapTable item={item} key={item.id} />
               ))}
               <tr className="bg-indigo-700 opacity-80 text-white">
-                <th colSpan={3} className="text-center px-3 py-3 text-base font-bold">
+                <th colSpan={4} className="text-center px-3 py-3 text-base font-bold">
                   Total
                 </th>
-                <th colSpan={2} className="text-center  px-3 py-3 text-base font-bold">
+                <th className="text-center  px-3 py-3 text-base font-bold">
                   $ {totalRecap.toFixed(1)}
                 </th>
               </tr>
