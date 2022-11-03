@@ -12,6 +12,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const hamburger = document.querySelector("#hamburger");
   const navMenu = document.querySelector("#nav-menu");
+  const amountLogin = amount.length !== 0 ? amount.find((item) => item.idUser === login.id) : null;
 
   useEffect(() => {
     const profileClick = document.querySelector("#profileClick");
@@ -118,7 +119,7 @@ const Navbar = () => {
                         <span className="block h-0.5 w-0 group-hover:w-full transition-all duration-500  bg-secondary"></span>
                       </NavLink>
                       <div className="flex absolute top-0 left-16 lg:-right-1 justify-center items-center">
-                        <span className=" bg-secondary rounded-full text-primary text-xs font-semibold px-2 py-1">{amount}</span>
+                        <span className=" bg-secondary rounded-full text-primary text-xs font-semibold px-2 py-1">{amountLogin ? amountLogin.amount : 0}</span>
                       </div>
                     </li>
                   )}

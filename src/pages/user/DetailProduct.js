@@ -26,9 +26,10 @@ const DetailProduct = () => {
   };
 
   const handleCart = () => {
-    if (login === null) {
+    if (!login.id) {
       navigate("/login", { state: { from: location, hallo: "hallo" } });
-    } else {
+    }
+    if (login.id) {
       dispatch(addCart({ id: id, quantity: quantity }));
       navigate("/cart");
     }

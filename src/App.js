@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import Footer from "./components/footer/Footer";
 import Navbar from "./components/navbar/Navbar";
-import { calculateTotal, cartsExist, getProducts, loginUser, recapExist, saveExist } from "./features/product/productSlice";
+import { amountExist, calculateTotal, cartsExist, getProducts, loginUser, recapExist, saveExist } from "./features/product/productSlice";
 import Carts from "./pages/user/Carts";
 import DetailProduct from "./pages/user/DetailProduct";
 import Homepage from "./pages/user/Homepage";
@@ -16,7 +16,7 @@ import ProtectedRouteUser from "./components/protectedRoute/ProtectedRouteUser";
 import ProtectedRouteLogin from "./components/protectedRoute/ProtectedRouteLogin";
 
 const App = () => {
-  const { carts, products } = useSelector((store) => store.product);
+  const { carts, products, login } = useSelector((store) => store.product);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts());
@@ -33,11 +33,14 @@ const App = () => {
     if (JSON.parse(localStorage.getItem("recap"))) {
       dispatch(recapExist(JSON.parse(localStorage.getItem("recap"))));
     }
+    if (JSON.parse(localStorage.getItem("amount"))) {
+      dispatch(amountExist(JSON.parse(localStorage.getItem("amount"))));
+    }
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(calculateTotal());
-  }, [dispatch, carts, products]);
+    if (login.id) dispatch(calculateTotal());
+  }, [dispatch, carts, products, login]);
 
   return (
     <div className="bg-zinc-100">

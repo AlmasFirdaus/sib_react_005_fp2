@@ -8,10 +8,11 @@ import CartProductTable from "../../components/cart/CartProductTable";
 import { checkoutItem } from "../../features/product/productSlice";
 
 const Carts = () => {
-  let { carts, total, login } = useSelector((store) => store.product);
+  let { carts, amount, login } = useSelector((store) => store.product);
   const cartLogin = carts.filter((cart) => cart.idUser === login.id);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const amountLogin = amount.find((item) => item.idUser === login.id);
 
   useEffect(() => {
     if (!JSON.parse(localStorage.getItem("login"))) {
@@ -84,7 +85,7 @@ const Carts = () => {
                 <div className="w-full border-b-2 py-5">
                   <div className="flex items-center font-semibold text-lg">
                     <h2 className="w-1/2 tracking-wide text-slate-500">Total</h2>
-                    <h2 className="w-1/2 font-garamond text-lg text-end">${total.toFixed(1)}</h2>
+                    <h2 className="w-1/2 font-garamond text-lg text-end">${amountLogin ? amountLogin.total.toFixed(1) : 0}</h2>
                   </div>
                 </div>
                 <div className="w-full py-5">

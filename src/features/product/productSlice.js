@@ -8,8 +8,8 @@ const initialState = {
   recap: [],
   login: [],
   saved: [],
-  amount: 0,
-  total: 0,
+  amount: [],
+  total: [],
 };
 
 export const getProducts = createAsyncThunk("products/getProducts", async () => {
@@ -105,25 +105,38 @@ const productSlice = createSlice({
         }
       }
       state.carts = [];
-      state.amount = 0;
-      state.total = 0;
+      state.amount = state.amount.filter((item) => item.idUser !== state.login.id);
       localStorage.setItem("carts", JSON.stringify(state.carts));
       localStorage.setItem("recap", JSON.stringify(state.recap));
       localStorage.setItem("products", JSON.stringify(state.products));
+      localStorage.setItem("amount", JSON.stringify(state.amount));
+    },
+    amountExist: (state, action) => {
+      state.amount = action.payload;
+      localStorage.setItem("amount", JSON.stringify(state.amount));
     },
     calculateTotal: (state, action) => {
+      const cartLogin = state.carts.filter((cart) => cart.idUser === state.login.id);
       let amount = 0;
       let total = 0;
-      for (let item of state.carts) {
-        const cart = state.products.find((product) => product.id === item.product.idProduct);
-        if (cart) {
-          total += cart.price * item.product.quantity;
-          amount += item.product.quantity;
+      if (cartLogin.length !== 0) {
+        for (let item of cartLogin) {
+          const cart = state.products.find((product) => product.id === item.product.idProduct);
+          if (cart) {
+            total += cart.price * item.product.quantity;
+            amount += item.product.quantity;
+          }
         }
-      }
 
-      state.amount = amount;
-      state.total = total;
+        const amountLogin = state.amount.find((item) => item.idUser === state.login.id);
+        if (amountLogin) {
+          amountLogin.amount = amount;
+          amountLogin.total = total;
+        } else {
+          state.amount.push({ idUser: state.login.id, amount: amount, total: total });
+        }
+        localStorage.setItem("amount", JSON.stringify(state.amount));
+      }
     },
     saveExist: (state, action) => {
       state.saved = action.payload;
@@ -180,5 +193,5 @@ const productSlice = createSlice({
   },
 });
 
-export const { addCart, removeItem, calculateTotal, recapExist, checkoutItem, logoutUser, cartsExist, saveExist, saveItem, unSaveItem } = productSlice.actions;
+export const { addCart, removeItem, calculateTotal, recapExist, checkoutItem, logoutUser, amountExist, cartsExist, saveExist, saveItem, unSaveItem } = productSlice.actions;
 export default productSlice.reducer;
