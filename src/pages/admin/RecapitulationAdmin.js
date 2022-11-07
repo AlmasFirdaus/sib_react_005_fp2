@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { CartOutlineIcon } from "../../assets/icons/icon-svg/iconSvg";
+import CartRekap from "../../components/admin/recapitulation/CartRekap";
 import CartRekapTable from "../../components/admin/recapitulation/CartRekapTable";
 
 const TableRecap = () => {
@@ -23,42 +24,74 @@ const TableRecap = () => {
                     Sales recapitulation
                 </h1>
                 {recap.length > 0 ? (
-                  <div>
-                    <div className="hidden pt-5 p-1.5 w-full md:flex flex-col justify-center items-center">
-                        <table className="border w-3/5 divide-y divide-gray-200">
-                            <thead className="bg-gray-5 ">
-                                <tr className="[&>th]:px-6 [&>th]:py-3 [&>th]:text-sm [&>th]:font-bold [&>th]:uppercase [&>th]:text-gray-500">
-                                    <th className="text-center">UserID</th>
-                                    <th className="min-w-[20rem] text-center">
-                                        Product
-                                    </th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Income</th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-gray-200">
-                                {recap.map((item) => (
-                                    <CartRekapTable item={item} key={item.id} />
-                                ))}
-                                <tr className="bg-indigo-700 opacity-80 text-white">
-                                    <th
-                                        colSpan={4}
-                                        className="text-center px-3 py-3 text-base font-bold"
-                                    >
-                                        Total
-                                    </th>
-                                    <th className="text-center  px-3 py-3 text-base font-bold">
-                                        $ {totalRecap.toFixed(1)}
-                                    </th>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div>
+                        <div className="hidden pt-5 p-1.5 w-full md:flex flex-col justify-center items-center">
+                            <table className="border w-3/5 divide-y divide-gray-200">
+                                <thead className="bg-gray-5 ">
+                                    <tr className="[&>th]:px-6 [&>th]:py-3 [&>th]:text-sm [&>th]:font-bold [&>th]:uppercase [&>th]:text-gray-500">
+                                        <th className="text-center">UserID</th>
+                                        <th className="min-w-[20rem] text-center">
+                                            Product
+                                        </th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Income</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y divide-gray-200">
+                                    {recap.map((item) => (
+                                        <CartRekapTable
+                                            item={item}
+                                            key={item.id}
+                                        />
+                                    ))}
+                                    <tr className="bg-indigo-700 opacity-80 text-white">
+                                        <th
+                                            colSpan={4}
+                                            className="text-center px-3 py-3 text-base font-bold"
+                                        >
+                                            Total
+                                        </th>
+                                        <th className="text-center  px-3 py-3 text-base font-bold">
+                                            $ {totalRecap.toFixed(1)}
+                                        </th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="flex md:hidden justify-start items-start pb-10">
+                            <div className="w-full">
+                                <div className="grid justify-center md:grid-cols-2 xl:grid-cols-4 pt-6">
+                                    <div className="w-full flex text-primary border-b-2 py-2 container">
+                                        <div className="text-center text-xs w-[2rem]">
+                                            UserID
+                                        </div>
+                                        <div className="text-center font-medium text-xs w-[12rem]">
+                                            Product
+                                        </div>
+                                        <div className="text-center w-[3rem] text-xs">
+                                            Qty
+                                        </div>
+                                        <div className="text-left pl-4 w-[4rem] text-xs">
+                                            Price
+                                        </div>
+                                    </div>
+                                    {recap.map((item) => (
+                                        <CartRekap item={item} key={item.id} />
+                                    ))}
+                                    <div className="bg-indigo-700 opacity-90 text-white w-full flex border-b-2 py-2 container">
+                                        
+                                        <div className="text-center w-full text-xs font-bold ">
+                                            Total
+                                        </div>
+                                        <div className="text-left pl-4 w-[4.7rem] text-xs">
+                                         $ {totalRecap.toFixed(1)}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div className="flex md:hidden justify-start items-start pb-10">
-                        <h1>Halos</h1>
-                    </div>
-                  </div>
                 ) : (
                     <div className="w-full h-52 flex flex-col justify-center items-center">
                         <CartOutlineIcon />
