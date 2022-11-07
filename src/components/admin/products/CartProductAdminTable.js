@@ -29,7 +29,7 @@ const CartProductAdminTable = ({ item, index }) => {
         <p className="text-xs font-bold opacity-50">{category}</p>
       </td>
       <td className="text-center">
-        <input className="w-16 text-center" onChange={handleStock} value={stockProduct}></input>
+        <input className="border border-blueButton rounded-full w-16 text-center" onChange={handleStock} value={stockProduct}></input>
       </td>
       <td className="text-center">
         <button onClick={handleUpdate} className="rounded-full bg-blueButton brightness-125 px-3 py-1 font-bold text-white text-sm transition duration-200 ease-in-out hover:bg-blueButton hover:brightness-100">
