@@ -105,7 +105,7 @@ const Navbar = () => {
                         <span className="block h-0.5 w-0 group-hover:w-full transition-all duration-500  bg-secondary"></span>
                       </a>
                     ) : (
-                      <NavLink to="/admin/sales-recap" onClick={() => window.scrollTo(0, 792)} className="text-base py-2 mx-6 font-quicksand font-semibold capitalize group-hover:text-secondary">
+                      <NavLink to="/admin/sales-recap" onClick={() => window.scrollTo(0, 0)} className="text-base py-2 mx-6 font-quicksand font-semibold capitalize group-hover:text-secondary">
                         Sales Recap
                         <span className="block h-0.5 w-0 group-hover:w-full transition-all duration-500  bg-secondary"></span>
                       </NavLink>
