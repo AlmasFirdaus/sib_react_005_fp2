@@ -86,6 +86,10 @@ const productSlice = createSlice({
       const cartLogin = state.carts.filter((cart) => cart.idUser === state.login.id);
       const exist = cartLogin.find((cart) => cart.product.idProduct === id);
       const existProduct = state.products.find((product) => product.id === id);
+      const existAmount = state.amount.find((item) => item.idUser === state.login.id);
+      if (existAmount && existAmount.amount === 1) {
+        state.amount = state.amount.filter((item) => item.idUser !== state.login.id);
+      }
       if (existProduct && exist.product.quantity === 1) {
         state.carts = state.carts.filter((cart) => cart.product.idProduct !== id);
       } else {
@@ -94,6 +98,7 @@ const productSlice = createSlice({
       }
       localStorage.setItem("carts", JSON.stringify(state.carts));
       localStorage.setItem("products", JSON.stringify(state.products));
+      localStorage.setItem("amount", JSON.stringify(state.amount));
     },
     recapExist: (state, action) => {
       state.recap = action.payload;

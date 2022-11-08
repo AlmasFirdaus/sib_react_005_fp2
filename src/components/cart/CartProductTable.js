@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { MinusIcon, PlusIcon } from "../../assets/icons/icon-svg/iconSvg";
 import { addCart, removeItem } from "../../features/product/productSlice";
@@ -10,9 +11,12 @@ const CartProductTable = ({ product }) => {
   const [qty, setQty] = useState(stock === 0 ? 0 : quantity);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    qty === 0 ? setQty(quantity) : setQty(qty);
+  }, [qty, quantity]);
+
   const handleSubtract = () => {
     setQty(qty - 1);
-
     dispatch(removeItem({ id: idProduct, quantity: qty }));
   };
 
