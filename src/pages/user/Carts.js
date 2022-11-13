@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { CartOutlineIcon, ChevronRightIcon, HomeIcon } from "../../assets/icons/icon-svg/iconSvg";
-import CartProduct from "../../components/cart/CartProduct";
-import CartProductTable from "../../components/cart/CartProductTable";
+import CartProduct from "../../components/user/cart/CartProduct";
+import CartProductTable from "../../components/user/cart/CartProductTable";
 // import RemoveItemModal from "../components/modal/RemoveItemModal";
 import { checkoutItem } from "../../features/product/productSlice";
 

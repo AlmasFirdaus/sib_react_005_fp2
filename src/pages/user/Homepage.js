@@ -1,6 +1,6 @@
 import React from "react";
 import homepage from "../../assets/images/homepage1.jpg";
-import NavCategory from "../../components/category/NavCategory";
+import NavCategory from "../../components/user/category/NavCategory";
 import ProductCategory from "../../components/user/category/ProductCategory";
 import image from "../../assets/images/homepage.jpg";
 

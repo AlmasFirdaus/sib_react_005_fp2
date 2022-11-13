@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { MinusIcon, PlusIcon } from "../../assets/icons/icon-svg/iconSvg";
-import { addCart, removeItem } from "../../features/product/productSlice";
+import { MinusIcon, PlusIcon } from "../../../assets/icons/icon-svg/iconSvg";
+import { addCart, removeItem } from "../../../features/product/productSlice";
 
 const CartProductTable = ({ product }) => {
   const { products } = useSelector((store) => store.product);
