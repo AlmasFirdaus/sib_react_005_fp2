@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { CartIcon, HeartFillIcon, HeartIcon, ZoomIn } from "../../assets/icons/icon-svg/iconSvg";
-import { addCart, saveItem, unSaveItem } from "../../features/product/productSlice";
+import { CartIcon, HeartFillIcon, HeartIcon } from "../../../assets/icons/icon-svg/iconSvg";
+import { addCart, saveItem, unSaveItem } from "../../../features/product/productSlice";
 
 const ProductCards = ({ item }) => {
   let { id, title, price, category, image, stock } = item;
@@ -54,9 +54,6 @@ const ProductCards = ({ item }) => {
                 <HeartIcon />
               </button>
             )}
-            <button className="w-10 h-10 bg-slate-200 opacity-50 shadow-md rounded-full flex justify-center items-center transition delay-200 duration-300 ease-in-out hover:bg-blueButton hover:text-white hover:opacity-100 group-hover:-translate-x-12">
-              <ZoomIn />
-            </button>
           </div>
         </div>
         <div className="flex flex-1 justify-center text-center">

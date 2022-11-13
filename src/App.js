@@ -1,18 +1,18 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import Footer from "./components/footer/Footer";
-import Navbar from "./components/navbar/Navbar";
+import Footer from "./components/user/footer/Footer";
+import Navbar from "./components/user/navbar/Navbar";
 import { amountExist, calculateTotal, cartsExist, getProducts, loginUser, recapExist, saveExist } from "./features/product/productSlice";
 import Carts from "./pages/user/Carts";
 import DetailProduct from "./pages/user/DetailProduct";
 import Homepage from "./pages/user/Homepage";
 import Login from "./pages/all-user/Login";
 import Wishlist from "./pages/user/Wishlist";
-import NavbarAdmin from "./components/navbar/NavbarAdmin";
-import ProtectedRouteAdmin from "./components/protectedRoute/ProtectedRouteAdmin";
-import ProtectedRouteUser from "./components/protectedRoute/ProtectedRouteUser";
-import ProtectedRouteLogin from "./components/protectedRoute/ProtectedRouteLogin";
+import NavbarAdmin from "./components/user/navbar/NavbarAdmin";
+import ProtectedRouteAdmin from "./components/user/protectedRoute/ProtectedRouteAdmin";
+import ProtectedRouteUser from "./components/user/protectedRoute/ProtectedRouteUser";
+import ProtectedRouteLogin from "./components/user/protectedRoute/ProtectedRouteLogin";
 import TableRecap from "./pages/admin/RecapitulationAdmin";
 import ProductsAdmin from "./pages/admin/ProductsAdmin";
 

@@ -1,12 +1,18 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ChevronRightIcon, HomeIcon } from "../../assets/icons/icon-svg/iconSvg";
-import ProductCards from "../../components/product-card/ProductCards";
+import ProductCards from "../../components/user/product-card/ProductCards";
 
 const Wishlist = () => {
   const { saved, products, login } = useSelector((store) => store.product);
   const savedLogin = saved.filter((save) => save.userId === login.id);
   let savedProducts = products.filter((product, index) => product.id === savedLogin[index]?.productId);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    !login.id && navigate("/");
+  });
 
   return (
     <section className="pt-12 pb-10 lg:pt-16 font-quicksand bg-white">
@@ -31,7 +37,11 @@ const Wishlist = () => {
         <div className="text-center flex justify-center items-center pb-14">
           <h1 className=" font-quicksand font-bold text-4xl text-primary border-x-[3px] border-secondary px-10 uppercase">Wishlist Product</h1>
         </div>
-        <div className="grid justify-center gap-7 md:grid-cols-2 xl:grid-cols-4">{savedProducts && savedProducts.map((item, index) => <ProductCards item={item} index={index} key={index} />)}</div>
+        {saved.length === 0 ? (
+          <div className="h-56 flex justify-center items-center capitalize font-bold">No Wishlist</div>
+        ) : (
+          <div className="grid justify-center gap-7 md:grid-cols-2 xl:grid-cols-4">{savedProducts && savedProducts.map((item, index) => <ProductCards item={item} index={index} key={index} />)}</div>
+        )}
       </div>
     </section>
   );

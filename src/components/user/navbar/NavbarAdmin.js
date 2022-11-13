@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import logo1 from "../../assets/icons/icon-images/logo-1.png";
-import { ProfileIcon } from "../../assets/icons/icon-svg/iconSvg";
-import { logoutUser } from "../../features/product/productSlice";
+import logo1 from "../../../assets/icons/icon-images/logo-1.png";
+import { ProfileIcon } from "../../../assets/icons/icon-svg/iconSvg";
+import { logoutUser } from "../../../features/product/productSlice";
 
-const Navbar = () => {
+const NavbarAdmin = () => {
   const { login } = useSelector((store) => store.product);
   const location = useLocation().pathname;
   const dispatch = useDispatch();
@@ -137,10 +137,6 @@ const Navbar = () => {
                     </div>
                   )}
                 </ul>
-                {/* <form onSubmit={handleSubmit} className="mx-6 flex">
-                  <input type="text" onChange={searchChange} className="text-base border border-primary border-opacity-50 rounded-lg mr-3 px-2 w-1/2" />
-                  <button className="py-1 px-3 w-1/2 md:w-1/3 bg-primary rounded-lg text-secondary transition duration-200 hover:opacity-80">Search</button>
-                </form> */}
               </div>
             </nav>
           </div>
@@ -174,4 +170,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavbarAdmin;

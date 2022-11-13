@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import logo1 from "../../assets/icons/icon-images/logo-1.png";
-import { ProfileIcon } from "../../assets/icons/icon-svg/iconSvg";
-import { logoutUser } from "../../features/product/productSlice";
+import logo1 from "../../../assets/icons/icon-images/logo-1.png";
+import { ProfileIcon } from "../../../assets/icons/icon-svg/iconSvg";
+import { logoutUser } from "../../../features/product/productSlice";
 
 const Navbar = () => {
   const { amount, login } = useSelector((store) => store.product);
@@ -123,7 +123,7 @@ const Navbar = () => {
                       </div>
                     </li>
                   )}
-                  {JSON.parse(localStorage.getItem("savedProduct")) && (
+                  {login.id && (
                     <li className="group lg:flex relative">
                       <NavLink to="/wishlist" onClick={() => window.scrollTo(0, 0)} className="z-20 text-base py-2 mx-6 font-quicksand font-semibold group-hover:text-secondary">
                         Wishlist

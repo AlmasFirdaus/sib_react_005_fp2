@@ -25,7 +25,7 @@ export const getProducts = createAsyncThunk("products/getProducts", async () => 
   });
 });
 
-export const loginUser = createAsyncThunk("products/loginUser", async ({ username, password, redirect, isLogin }) => {
+export const loginUser = createAsyncThunk("products/loginUser", async ({ username, password, redirect, isLogin, notFound }) => {
   try {
     if (isLogin) {
       return isLogin;
@@ -46,7 +46,8 @@ export const loginUser = createAsyncThunk("products/loginUser", async ({ usernam
       return { id: find.id, role: "user", user: `${find.name.firstname} ${find.name.lastname}`, token: resPost.data.token, login: true };
     }
   } catch (error) {
-    console.log(error);
+    notFound(true);
+    throw error;
   }
 });
 
@@ -200,6 +201,9 @@ const productSlice = createSlice({
       state.isLoading = false;
       state.login = action.payload;
       localStorage.setItem("login", JSON.stringify(action.payload));
+    },
+    [loginUser.rejected]: (state, action) => {
+      state.isLoading = false;
     },
   },
 });
