@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import ProductCards from "../../components/user/product-card/ProductCards";
-import { HomeIcon, ChevronRightIcon, MinusIcon, PlusIcon, CartIcon, HeartIcon } from "../../assets/icons/icon-svg/iconSvg";
+import { HomeIcon, ChevronRightIcon, MinusIcon, PlusIcon, CartIcon } from "../../assets/icons/icon-svg/iconSvg";
 import { addCart } from "../../features/product/productSlice";
 
 const DetailProduct = () => {
