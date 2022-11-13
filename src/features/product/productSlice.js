@@ -160,11 +160,9 @@ const productSlice = createSlice({
       if (saveLogin.length > 0) {
         const exist = saveLogin.find((item) => item.productId === id);
         if (!exist) {
-          console.log("!exist");
           state.saved.push({ userId: state.login.id, productId: id });
         }
       } else {
-        console.log("!saveLogin");
         state.saved.push({ userId: state.login.id, productId: id });
       }
       localStorage.setItem("savedProduct", JSON.stringify(state.saved));

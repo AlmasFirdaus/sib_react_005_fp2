@@ -7,7 +7,10 @@ import ProductCards from "../../components/user/product-card/ProductCards";
 const Wishlist = () => {
   const { saved, products, login } = useSelector((store) => store.product);
   const savedLogin = saved.filter((save) => save.userId === login.id);
-  let savedProducts = products.filter((product, index) => product.id === savedLogin[index]?.productId);
+  let savedProducts = [];
+  for (let itemLogin of savedLogin) {
+    savedProducts.push(products.find((product) => product.id === itemLogin.productId));
+  }
   const navigate = useNavigate();
 
   useEffect(() => {

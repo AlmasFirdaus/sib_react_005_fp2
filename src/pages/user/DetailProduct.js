@@ -16,8 +16,6 @@ const DetailProduct = () => {
   let location,
     { pathname } = useLocation();
   const locations = pathname.substring(1).split("/");
-
-  // delete soon
   const navigate = useNavigate();
 
   const handleQuantity = (e) => {
@@ -31,7 +29,6 @@ const DetailProduct = () => {
     }
     if (login.id) {
       dispatch(addCart({ id: id, quantity: quantity }));
-      navigate("/cart");
     }
   };
 
@@ -109,14 +106,11 @@ const DetailProduct = () => {
                     <CartIcon /> <span className="ml-2 capitalize">Add To Cart</span>
                   </button>
                 )}
-                <button className="font-medium text-base text-black opacity-20 px-2 py-2 flex items-center bg-slate-200 rounded-full shadow-sm transition ease-in-out duration-200 hover:brightness-110 hover:shadow-md hover:bg-blueButton hover:opacity-100 hover:text-white">
-                  <HeartIcon />
-                </button>
               </div>
               <div className="full flex mb-10 lg:mb-0">
                 <h4 className="font-medium text-base uppercase">
                   Category :
-                  <Link to={`/${product.category.replace(" ", "-")}`} onClick={() => window.scrollTo(0, 792)} className="capitalize text-primary transition ease-in-out duration-300 hover:text-secondary">
+                  <Link to={`/${product.category.replace(" ", "-")}`} onClick={() => window.scrollTo(0, 792)} className="ml-3 capitalize text-primary transition ease-in-out duration-300 hover:text-secondary">
                     {product.category}
                   </Link>
                 </h4>
