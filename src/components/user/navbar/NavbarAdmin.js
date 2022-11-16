@@ -112,14 +112,6 @@ const NavbarAdmin = () => {
                     )}
                   </li>
 
-                  {JSON.parse(localStorage.getItem("savedProduct")) && (
-                    <li className="group lg:flex relative">
-                      <NavLink to="/dashboard" onClick={() => window.scrollTo(0, 0)} className="z-20 text-base py-2 mx-6 font-quicksand font-semibold group-hover:text-secondary">
-                        Dashboard
-                        <span className="block h-0.5 w-0 group-hover:w-full transition-all duration-500  bg-secondary"></span>
-                      </NavLink>
-                    </li>
-                  )}
                   {!login.id ? (
                     <li className="group lg:flex">
                       <Link to="/login" className="lg:hidden bg-blueButton shadow-md rounded-full text-primaryLight text-base py-1 px-6 mx-6 font-quicksand font-semibold group-hover:brightness-110">
