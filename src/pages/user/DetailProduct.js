@@ -29,6 +29,7 @@ const DetailProduct = () => {
     }
     if (login.id) {
       dispatch(addCart({ id: id, quantity: quantity }));
+      navigate("/cart");
     }
   };
 
