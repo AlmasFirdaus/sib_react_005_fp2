@@ -15,6 +15,8 @@ import ProtectedRouteUser from "./components/user/protectedRoute/ProtectedRouteU
 import ProtectedRouteLogin from "./components/user/protectedRoute/ProtectedRouteLogin";
 import TableRecap from "./pages/admin/RecapitulationAdmin";
 import ProductsAdmin from "./pages/admin/ProductsAdmin";
+import About from "./pages/all-user/About";
+import FooterAdmin from "./components/admin/footerAdmin/FooterAdmin";
 
 const App = () => {
   const { carts, products, login } = useSelector((store) => store.product);
@@ -106,6 +108,7 @@ const App = () => {
               <>
                 <NavbarAdmin />
                 <ProductsAdmin />
+                <FooterAdmin />
               </>
             }
           />
@@ -115,6 +118,17 @@ const App = () => {
               <>
                 <NavbarAdmin />
                 <TableRecap />
+                <FooterAdmin />
+              </>
+            }
+          />
+          <Route
+            path="/admin/about"
+            element={
+              <>
+                <NavbarAdmin />
+                <About />
+                <FooterAdmin />
               </>
             }
           />

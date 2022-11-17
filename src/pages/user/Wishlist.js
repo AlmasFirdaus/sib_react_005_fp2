@@ -18,7 +18,7 @@ const Wishlist = () => {
   });
 
   return (
-    <section className="pt-12 pb-10 lg:pt-16 font-quicksand bg-white">
+    <section id="wishlist" className="pt-12 pb-10 lg:pt-16 font-quicksand bg-white">
       <div
         className="w-full h-96 bg-cover bg-fixed bg-center bg-no-repeat overflow-hidden flex justify-center items-center text-center relative"
         style={{ backgroundImage: `url(https://images.unsplash.com/photo-1573855619003-97b4799dcd8b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80)` }}

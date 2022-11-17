@@ -54,46 +54,35 @@ const Footer = () => {
               <h3 className="mb-5 text-xl font-semibold text-primary">Navigation</h3>
               <ul className="text-primary">
                 <li>
-                  {location === "/" ? (
-                    <a href="#home" className="mb-3 inline-block text-lg hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
-                      Home
+                  {location === "/admin" ? (
+                    <a href="#product" className="mb-3 inline-block text-lg hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
+                      Product
                     </a>
                   ) : (
-                    <Link to="/" onClick={topFunction} className="mb-3 inline-block text-lg hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
-                      Home
+                    <Link to="/admin" onClick={topFunction} className="mb-3 inline-block text-lg hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
+                      Product
                     </Link>
                   )}
                 </li>
                 <li>
-                  {location === "/" ? (
-                    <a href="#category" className="mb-3 inline-block text-lg hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
-                      Category
+                  {location === "/admin/sales-recap" ? (
+                    <a href="#sales-recap" className="mb-3 inline-block text-lg hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
+                      Sales Recap
                     </a>
                   ) : (
-                    <Link to="/" onClick={() => window.scrollTo(0, 729)} className="mb-3 inline-block text-lg hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
-                      Category
+                    <Link to="/admin/sales-recap" onClick={topFunction} className="mb-3 inline-block text-lg hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
+                      Sales Recap
                     </Link>
                   )}
                 </li>
                 <li>
-                  {location === "/wishlist" ? (
-                    <a href="#wishlist" className="mb-3 inline-block text-lg hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
-                      Wishlist
+                  {location === "/admin/about" ? (
+                    <a href="#about" className="mb-3 inline-block text-lg hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
+                      About
                     </a>
                   ) : (
-                    <Link to="/wishlist" onClick={topFunction} className="mb-3 inline-block text-lg hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
-                      Wishlist
-                    </Link>
-                  )}
-                </li>
-                <li>
-                  {location === "/cart" ? (
-                    <a href="#cart" className="mb-3 inline-block text-lg hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
-                      Cart
-                    </a>
-                  ) : (
-                    <Link to="/cart" onClick={topFunction} className="mb-3 inline-block text-lg hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
-                      Cart
+                    <Link to="/admin/about" onClick={topFunction} className="mb-3 inline-block text-lg hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
+                      About
                     </Link>
                   )}
                 </li>

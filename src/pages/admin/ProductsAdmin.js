@@ -5,8 +5,8 @@ import CartProductAdminTable from "../../components/admin/products/CartProductAd
 const ProductsAdmin = () => {
   const { products } = useSelector((store) => store.product);
   return (
-    <section id="rekap" className="pt-16 pb-28 font-quicksand">
-      <div className="container bg-white min-h-screen">
+    <section id="product" className="pt-16 font-quicksand">
+      <div className="container pb-28 bg-white min-h-screen">
         <h1 className="pt-10 text-center font-bold uppercase text-2xl">Products</h1>
         <div className="hidden md:flex pt-5 p-1.5 w-full flex-col justify-center items-center">
           <table className="border w-3/5 divide-y divide-gray-200">
