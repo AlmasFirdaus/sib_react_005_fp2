@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../../assets/icons/icon-images/logo-1.png";
+import kodeId from "../../../assets/images/kode-hactive.png"
 
 const Footer = () => {
   const location = useLocation().pathname;
@@ -47,6 +48,10 @@ const Footer = () => {
                   >
                     Logo Design
                   </a>
+                </li>
+                <li>
+                  <a href="https://www.kode.id" target="_blank"
+                    rel="noreferrer noopener"><img src={kodeId} alt="kode.id" className="hover:w-28" width={100}/></a>
                 </li>
               </ul>
             </div>
