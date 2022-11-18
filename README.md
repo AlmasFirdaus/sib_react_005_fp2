@@ -1,11 +1,11 @@
 <h1 align="center">RCTN-KS05</h1>
 <p align="center"><img src="https://pic.onlinewebfonts.com/svg/img_62254.png" alt="International E-commerce" width="91" height="93" /></p>
 <h1 align="center">Final Project 2 - E-Commerce</h1>
-<table style="height: 18px; width: 40.6406%; border-collapse: collapse; border-style: solid; border-color: #000000;" border="1">
+<table style="height: 18px; width: 40.6406%; border-collapse: collapse; border-style: solid; border-color: #000000; background-color: #00ff00;" border="1">
 <tbody>
 <tr style="height: 18px;">
 <td style="width: 10.2409%; height: 18px; text-align: center;">Status</td>
-<td style="width: 17.6138%; height: 18px; text-align: center; background-color: #00ff00;">Sudah Mentoring</td>
+<td style="width: 17.6138%; height: 18px; text-align: center; ">Sudah Mentoring</td>
 </tr>
 </tbody>
 </table>
