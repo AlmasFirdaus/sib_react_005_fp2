@@ -43,11 +43,15 @@
 <li><strong>Panduan <img src="https://cdn.pixabay.com/photo/2017/03/28/01/46/check-mark-2180770_1280.png" alt="" width="15" height="15" /></strong></li>
 <li><strong>Demo <img src="https://cdn.pixabay.com/photo/2017/03/28/01/46/check-mark-2180770_1280.png" alt="" width="15" height="15" /></strong>
 <ol>
-<li><a href="https://trello.com/invite/b/GbptzXdd/ATTI59df1a1b0aa31d03dd24ba549bbefdacCEDB4566/project-kelompok-7-rctn-ks05">Link Trello</a></li>
+<li><a href="https://trello.com/invite/b/GbptzXdd/ATTI59df1a1b0aa31d03dd24ba549bbefdacCEDB4566/project-kelompok-7-rctn-ks05" target="_blank"
+                    rel="noreferrer noopener">Link Trello</a></li>
 <li><a href="https://www.figma.com/file/iYlxIvECWSjIwSwVdEJcsw/Final-Project-2-Hactiv?node-id=0%3A1&amp;t=vXHorqZ0LuSvZ5OO-1
-">Link Figma</a></li>
-<li><a href="https://drive.google.com/file/d/1u0veY6ZGYhc_kF3uANJxjXR9jhHjwlVc/view?usp=share_link">Link Panduan</a></li>
-<li><a href="https://docs.google.com/presentation/d/1ohzlqDA50jAvS7lT3u-4QYQcIUCAroYw/edit?usp=share_link&amp;ouid=101891266544378704929&amp;rtpof=true&amp;sd=true">Link PPT</a></li>
+" target="_blank"
+                    rel="noreferrer noopener">Link Figma</a></li>
+<li><a href="https://drive.google.com/file/d/1u0veY6ZGYhc_kF3uANJxjXR9jhHjwlVc/view?usp=share_link" target="_blank"
+                    rel="noreferrer noopener">Link Panduan</a></li>
+<li><a href="https://docs.google.com/presentation/d/1ohzlqDA50jAvS7lT3u-4QYQcIUCAroYw/edit?usp=share_link&amp;ouid=101891266544378704929&amp;rtpof=true&amp;sd=true" target="_blank"
+                    rel="noreferrer noopener">Link PPT</a></li>
 </ol>
 </li>
 </ol>
