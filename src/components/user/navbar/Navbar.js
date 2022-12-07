@@ -1,51 +1,51 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import logo1 from "../../../assets/icons/icon-images/logo-1.png";
-import { ProfileIcon } from "../../../assets/icons/icon-svg/iconSvg";
-import { logoutUser } from "../../../features/product/productSlice";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import logo1 from '../../../assets/icons/icon-images/logo-1.png';
+import { ProfileIcon } from '../../../assets/icons/icon-svg/iconSvg';
+import { logoutUser } from '../../../features/product/productSlice';
 
 const Navbar = () => {
   const { amount, login } = useSelector((store) => store.product);
   const location = useLocation().pathname;
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const hamburger = document.querySelector("#hamburger");
-  const navMenu = document.querySelector("#nav-menu");
+  const hamburger = document.querySelector('#hamburger');
+  const navMenu = document.querySelector('#nav-menu');
   const amountLogin = amount.length !== 0 ? amount.find((item) => item.idUser === login.id) : null;
 
   useEffect(() => {
-    const profileClick = document.querySelector("#profileClick");
-    const profile = document.querySelector("#profile");
+    const profileClick = document.querySelector('#profileClick');
+    const profile = document.querySelector('#profile');
     if (hamburger) {
-      window.addEventListener("click", function (e) {
+      window.addEventListener('click', function (e) {
         if (e.target !== hamburger && e.target !== navMenu) {
-          hamburger.classList.remove("hamburger-active");
-          navMenu.classList.add("hidden");
+          hamburger.classList.remove('hamburger-active');
+          navMenu.classList.add('hidden');
         }
       });
     }
 
     if (profile) {
-      window.addEventListener("click", function (e) {
+      window.addEventListener('click', function (e) {
         if (e.target !== profileClick && e.target !== profile) {
-          profile.classList.add("hidden");
+          profile.classList.add('hidden');
         }
       });
     }
   });
 
   const hamburgerCLick = () => {
-    const hamburger = document.querySelector("#hamburger");
-    const navMenu = document.querySelector("#nav-menu");
+    const hamburger = document.querySelector('#hamburger');
+    const navMenu = document.querySelector('#nav-menu');
     // Hamburger
-    hamburger.classList.toggle("hamburger-active");
-    navMenu.classList.toggle("hidden");
+    hamburger.classList.toggle('hamburger-active');
+    navMenu.classList.toggle('hidden');
   };
 
   const handleProfile = () => {
-    const profile = document.querySelector("#profile");
-    profile.classList.toggle("hidden");
+    const profile = document.querySelector('#profile');
+    profile.classList.toggle('hidden');
   };
 
   const topFunction = () => {
@@ -55,7 +55,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     dispatch(logoutUser());
-    navigate("/");
+    navigate('/');
   };
 
   return (
@@ -63,7 +63,7 @@ const Navbar = () => {
       <div className="container">
         <div className="flex items-center justify-between relative">
           <div className="px-4">
-            {location === "/" ? (
+            {location === '/' ? (
               <a href="#home" className="font-bold text-lg text-primary block py-3 lg:py-3">
                 <img src={logo1} alt="" className="w-10 lg:w-16" />
               </a>
@@ -87,7 +87,7 @@ const Navbar = () => {
                     <h1 className="text-base text-center py-3 mx-6 mb-3 font-quicksand font-bold border-b-2 capitalize">{login.user}</h1>
                   </li>
                   <li className="group lg:flex">
-                    {location === "/" ? (
+                    {location === '/' ? (
                       <a href="#home" className="text-base py-2 mx-6 font-quicksand font-semibold group-hover:text-secondary">
                         Home
                         <span className="block h-0.5 w-0 group-hover:w-full transition-all duration-500  bg-secondary"></span>
@@ -100,7 +100,7 @@ const Navbar = () => {
                     )}
                   </li>
                   <li className="group lg:flex">
-                    {location === "/" ? (
+                    {location === '/' ? (
                       <a href="#category" className="text-base py-2 mx-6 font-quicksand font-semibold group-hover:text-secondary">
                         Category
                         <span className="block h-0.5 w-0 group-hover:w-full transition-all duration-500  bg-secondary"></span>
